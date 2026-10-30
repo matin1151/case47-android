@@ -37,6 +37,7 @@ class CaseAudio{
   while(this.nextNote<c.currentTime+.8){const hz=phrase[this.noteIndex++%phrase.length];if(hz)this.pianoNote(hz,this.nextNote);this.nextNote+=.94;}
  }
  tick(){if(!this.enabled||!this.context||this.context.state!=='running')return;const c=this.context,o=c.createOscillator(),g=c.createGain();o.frequency.setValueAtTime(520,c.currentTime);o.frequency.exponentialRampToValueAtTime(260,c.currentTime+.09);g.gain.setValueAtTime(.06,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.12);o.connect(g);g.connect(this.master);o.start();o.stop(c.currentTime+.13);}
+ press(){if(!this.enabled||!this.context||this.context.state!=='running')return;const c=this.context,t=c.currentTime,o=c.createOscillator(),g=c.createGain();o.type='triangle';o.frequency.setValueAtTime(310,t);o.frequency.exponentialRampToValueAtTime(230,t+.055);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.018,t+.008);g.gain.exponentialRampToValueAtTime(.0001,t+.075);o.connect(g);g.connect(this.master);o.start(t);o.stop(t+.08);}
 }
 window.CaseAudio=CaseAudio;
 })();
