@@ -1,0 +1,8 @@
+.local/
+node_modules/
+*.jks
+*.keystore
+*.idsig
+
+dist/
+__pycache__/

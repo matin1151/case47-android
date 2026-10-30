@@ -1,0 +1,16 @@
+{
+  "name": "case47-last-call",
+  "version": "0.4.0",
+  "private": true,
+  "description": "Offline Persian detective case engine and Android test build",
+  "scripts": {
+    "build:web": "python tools/build_web.py",
+    "test": "node --test tests/engine.test.cjs",
+    "test:ui": "node tests/ui.test.cjs",
+    "build:android": "python tools/build_android.py",
+    "test:resilience": "node tests/resilience.test.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.64.1"
+  }
+}

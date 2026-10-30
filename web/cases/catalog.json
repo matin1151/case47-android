@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "case47",
+      "file": "case47.json",
+      "entitlement": "free",
+      "productId": null
+    }
+  ]
+}
