@@ -1,6 +1,6 @@
 {
   "name": "case47-last-call",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "private": true,
   "description": "Offline Persian detective case engine and Android test build",
   "scripts": {
