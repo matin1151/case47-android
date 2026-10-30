@@ -6,7 +6,7 @@ for item in catalog['cases']:
  case=json.loads((W/'cases'/item['file']).read_text());cases.append(case)
 (W/'cases.bundle.js').write_text('window.CASE_CATALOG = '+json.dumps({'schemaVersion':1,'investigator':json.loads((W/'investigator.json').read_text()),'cases':cases},ensure_ascii=False)+';\n')
 html=(W/'index.html').read_text();css=(W/'style.css').read_text()
-for name in ['vazirmatn-regular.ttf','vazirmatn-bold.ttf','office.png','security.png','archive.png','suspects.png','evidence.png','investigator.png']:
+for name in ['vazirmatn-regular.ttf','vazirmatn-bold.ttf','office.png','security.png','archive.png','suspects.png','evidence.png','clock.png','investigator.png']:
  mime='image/png' if name.endswith('png') else 'font/ttf'
  css=css.replace('assets/'+name,'data:'+mime+';base64,'+base64.b64encode((W/'assets'/name).read_bytes()).decode())
 html=html.replace('<link rel="stylesheet" href="style.css">','<style>'+css+'</style>')

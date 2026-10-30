@@ -6,7 +6,7 @@ The first case is free. The app opens on detective Sam Naderi's desk, where play
 
 ## Current state
 
-Version **0.5.1** is a playable test build, not a Café Bazaar release. It includes:
+Version **0.5.2** is a playable test build, not a Café Bazaar release. It includes:
 
 - 16 pieces of evidence, 22 interview questions, three contradictions, five deductions, and three competing hypotheses that require both an interpretation and supporting evidence.
 - Two report outcomes, retry without losing evidence, optional deduction hints, and an actionable next lead.
@@ -18,7 +18,7 @@ The story and interface are in Persian. The technical documents in `docs/` are a
 
 ## Install on Android
 
-Build `dist/Case47-0.5.1-test.apk` using the instructions below, or obtain that test APK separately from the project owner. The `dist/` directory and signing key are intentionally excluded from Git.
+Build `dist/Case47-0.5.2-test.apk` using the instructions below, or obtain that test APK separately from the project owner. The `dist/` directory and signing key are intentionally excluded from Git.
 
 The APK requires **Android 8.0 (API 26) or newer**. Once installed, gameplay needs no internet connection. The app requests no internet, microphone, contacts, or personal-file permissions. Its test signing key is unsuitable for store publication.
 
@@ -60,6 +60,8 @@ Automated tests cover the full playable route, wrong and correct reports, save r
 Before a store release, the owner still needs a final application ID, a release signing key, device testing, store assets and policy review. Café Bazaar in-app billing for future cases has not been connected or tested. The current APK uses a temporary application ID and test key.
 
 ## Recent changes
+
+- **0.5.2:** Matched the clock image to 00:26, added evidence search and type filters, summarized report prerequisites, made failed-report feedback more useful, let active cases resume from the catalog, and blocked investigation actions until a case is started.
 
 - **0.5.1:** Reconciled the camera footage with the timeline, required both witness contradictions before judging their lies, and slightly reduced the home-screen heading.
 
