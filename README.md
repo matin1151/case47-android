@@ -1,45 +1,32 @@
-# پرونده ۴۷: آخرین تماس
+# Case 47: The Last Call
 
-نسخهٔ آزمایشی قابل‌بازی ۰.۵.۰؛ یک پروندهٔ مستقل، بدون نام‌گذاری مجموعهٔ بازی.
+An offline, Persian-language detective game for Android. This repository contains the game source, its data-driven case engine, the first playable case, tests, and a small native Android WebView shell. The game series has not been named.
 
-## نصب روی گوشی
+The first case is free. The app opens on detective Sam Naderi's desk, where players can start or resume cases and see which ones they have solved. Case 47 follows the death of Arman Rad in a locked office. Players examine three locations, interview three suspects, test conflicting accounts, reconstruct the timeline, and file a final report.
 
-فایل `dist/Case47-0.5.0-test.apk` برای **اندروید ۸ یا جدیدتر** ساخته شده است. آن را روی گوشی باز و نصب کنید. اگر اندروید اجازه خواست، اجازهٔ نصب برای همان برنامه‌ای که APK را باز می‌کند فعال شود. این نسخه امضای آزمایشی دارد و هنوز نسخهٔ انتشار کافه‌بازار نیست.
+## Current state
 
-پس از نصب، اینترنت لازم نیست. برنامه مجوز اینترنت، میکروفن، مخاطبان یا دسترسی به فایل‌های شخصی درخواست نمی‌کند. اولین پرونده رایگان است و پرداختی در برنامه وجود ندارد.
+Version **0.5.0** is a playable test build, not a Café Bazaar release. It includes:
 
-۱. در صفحهٔ کارآگاه، پروندهٔ ۴۷ را انتخاب و «باز کردن پرونده» را بزنید؛ صدا را در صورت تمایل فعال کنید.
-۲. نقاط شماره‌دار صحنه یا فهرست زیر تصویر را لمس کنید.
-۳. از نوار پایین بین مدارک، بازجویی، استنتاج و زمان‌بندی جابه‌جا شوید.
-۴. در بازجویی، ابتدا سؤال را بپرسید؛ سپس از «به چالش کشیدن ادعا» مدارک مربوط را انتخاب کنید.
-۵. روی تابلوی استنتاج، فرضیه‌های رقیب را با انتخاب توضیح و مدرک بیازمایید.
-۶. از دکمهٔ گزارش در بالای صفحه برای ثبت نتیجهٔ نهایی استفاده کنید.
+- 16 pieces of evidence, 22 interview questions, three contradictions, five deductions, and three competing hypotheses that require both an interpretation and supporting evidence.
+- Two report outcomes, retry without losing evidence, optional deduction hints, and an actionable next lead.
+- Automatic per-case saves, backup recovery, and manual save export/import. Older saves without hypothesis progress remain readable.
+- A portrait-first, right-to-left interface with locally bundled Vazirmatn fonts, case imagery, rain ambience, a quiet piano motif, and subtle button feedback. Audio can be turned off in settings.
+- A case catalog and a boundary for future permanent case ownership. **No purchase flow is active.**
 
-ذخیره خودکار است. برای انتقال پیشرفت به دستگاه دیگر، از تنظیمات «گرفتن نسخهٔ ذخیره» استفاده و متن را کامل کپی کنید. حذف برنامه/داده‌های آن ذخیرهٔ محلی را پاک می‌کند. به‌روزرسانی با همان شناسه و امضا، دادهٔ موجود را حفظ می‌کند.
+The story and interface are in Persian. The technical documents in `docs/` are also currently in Persian.
 
-## آنچه ساخته شده
+## Install on Android
 
-- صفحهٔ آغاز با معرفی کارآگاه سام نادری و تصویر او، فهرست پرونده‌ها و فیلتر در حال بررسی/حل‌شده؛ آیکون مستقل از پروندهٔ ۴۷.
-- یک مسیر کامل از کشف صحنه تا دو پایان درست/اشتباه و تلاش مجدد.
-- ۳ محل بررسی، ۱۶ مدرک، ۳ مظنون، ۲۲ سؤال، ۳ تناقض، ۵ استنتاج و ۳ فرضیهٔ چندگزینه‌ای با مدرک پشتیبان.
-- خط زمانی با ۶ رویداد؛ بازخورد اشتباه بدون از دست دادن مدرک.
-- فونت فارسی وزیرمتن به‌صورت محلی، رابط راست‌به‌چپ، نقاط لمسی حداقل ۴۴ پیکسل.
-- تصویر محیط دفتر سینمایی؛ تصاویر واقعی‌نمای حراست و بایگانی.
-- صدای محیط باران، ملودی آرام پیانو و موسیقی محیطی تولیدشده با Web Audio و افکت ثبت مدرک؛ بدون دانلود یا سرویس بیرونی.
-- ذخیرهٔ محلی، پشتیبان قبلی، بازیابی خطای ذخیره، وارد/صادر کردن پیشرفت.
-- پروندهٔ JSON مستقل از موتور، فهرست پرونده‌ها و رابط مالکیت دائمی برای توسعهٔ آینده.
+Build `dist/Case47-0.5.0-test.apk` using the instructions below, or obtain that test APK separately from the project owner. The `dist/` directory and signing key are intentionally excluded from Git.
 
-## وضعیت تست و محدودیت‌ها
+The APK requires **Android 8.0 (API 26) or newer**. Once installed, gameplay needs no internet connection. The app requests no internet, microphone, contacts, or personal-file permissions. Its test signing key is unsuitable for store publication.
 
-جزئیات در `docs/TEST-REPORT.md` است. مسیر کامل رابط کاربری روی Chromium با اندازهٔ نمایشگر موبایل تست شده؛ APK ساخته و امضا/ساختار آن بررسی شده است. **اجرای APK روی گوشی واقعی سامسونگ یا شبیه‌ساز اندروید هنوز تأیید نشده است.**
+Progress is stored on the device. Clearing app data or uninstalling the app removes that local save; export it from settings first if you need to keep it. Updating with the same application ID and signing key should preserve app data.
 
-نسخهٔ HTML تک‌فایلی در `dist/case47-standalone.html` نیز موجود است. همهٔ فایل‌ها در آن جاسازی شده‌اند؛ بدون فایل جانبی اجرا می‌شود. نسخهٔ تک‌فایلی از طریق سرویس محلی و سپس در حالت آفلاین تست شده؛ باز کردن مستقیم `file://` در مرورگر این محیط به دلیل سیاست محیط مجاز نبود. برای گوشی، APK انتخاب اصلی است.
+## Run and test the source
 
-بازجویی‌ها متنی‌اند؛ صدای بازی گفت‌وگوی دوبله‌شده ندارد. تصاویر بازسازی‌شدهٔ شخصیت‌ها و نامشان در اتاق بازجویی نمایش داده می‌شوند. اتصال واقعی خرید کافه‌بازار، امضای نهایی ناشر و آماده‌سازی صفحهٔ فروشگاه انجام نشده‌اند.
-
-## اجرای سورس
-
-پیش‌نیاز: Python 3، Node.js 18 یا بالاتر. موتور بازی وابستگی اجرایی npm ندارد.
+Requirements: Python 3 and Node.js 18 or newer. The game engine has no runtime npm dependencies.
 
 ```sh
 python tools/build_web.py
@@ -47,7 +34,7 @@ python -m http.server 8080 --directory web
 node --test tests/engine.test.cjs
 ```
 
-برای تست مرورگر:
+Open `http://localhost:8080` to play in a browser. For browser tests, install the development dependency and provide a Chromium executable:
 
 ```sh
 npm install
@@ -55,40 +42,26 @@ CHROMIUM_PATH=/usr/bin/chromium npm run test:ui
 CHROMIUM_PATH=/usr/bin/chromium npm run test:resilience
 ```
 
-در سیستم‌هایی که Chromium در مسیر دیگری است، `CHROMIUM_PATH` را تنظیم کنید. تست رابط، دو سرور موقت محلی ایجاد و پس از پایان می‌بندد.
+`tools/build_web.py` also creates a self-contained `dist/case47-standalone.html`. Browser tests cover that file when served locally; opening it directly through `file://` has not been verified on the target phone.
 
-ساخت APK با Java 21 و ابزارهای رسمی Android SDK:
+To build the Android test APK, use Java 21 and the official Android SDK tools downloaded by the setup script:
 
 ```sh
 python tools/setup_android.py
 python tools/build_android.py
 ```
 
-راهنمای ساخت، امضا و انتشار: `docs/ANDROID.md`. راهنمای موتور و افزودن پرونده: `docs/ARCHITECTURE.md`. پاسخ کامل معماها در `docs/WALKTHROUGH-SPOILERS.md` است؛ این فایل برای توسعه‌دهنده است و داستان را افشا می‌کند.
+See [`docs/ANDROID.md`](docs/ANDROID.md) for signing and release considerations, [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the case format and engine, and [`docs/TEST-REPORT.md`](docs/TEST-REPORT.md) for test scope. **[`docs/WALKTHROUGH-SPOILERS.md`](docs/WALKTHROUGH-SPOILERS.md) reveals the case solution.**
 
-## تغییرات نسخهٔ ۰.۲.۰
+## Verification and remaining work
 
-- تصویر واقعی‌نما برای ایستگاه حراست و بایگانی، پس‌زمینهٔ شهر بارانی در کل بازی.
-- تصویر سه مظنون پشت میز بازجویی و نام هرکدام در همان صفحه.
-- تصویر واقع‌گرایانهٔ بازسازی‌شده برای هر مدرک در پنجرهٔ جزئیات. متن گزارش مدرک منبع معتبر زمان‌هاست.
-- صدای باران و ملودی آرام پیانو با کلید صدا و توقف در پس‌زمینه.
-- اصلاح تناقض زمان ضبط دوربین و تماس آخر؛ بازبینی شواهد حضور انحصاری نیما.
+Automated tests cover the full playable route, wrong and correct reports, save recovery, offline browser play, audio state, the new hypotheses, and layouts from 320 to 1280 pixels wide. The APK has been built and its manifest, alignment, and v2/v3 signatures checked. **Installation and play on a physical Android phone have not yet been verified.**
 
-## تغییرات نسخهٔ ۰.۳.۰
+Before a store release, the owner still needs a final application ID, a release signing key, device testing, store assets and policy review. Café Bazaar in-app billing for future cases has not been connected or tested. The current APK uses a temporary application ID and test key.
 
-- صفحهٔ شروع اکنون معرفی کارآگاه مرد، سام نادری، و فهرست پرونده‌هاست.
-- پروندهٔ فعال و حل‌شده از پیشرفت ذخیره‌شدهٔ همان پرونده تشخیص داده می‌شود؛ ذخیرهٔ نسخهٔ ۰.۲.۰ حفظ می‌شود.
-- آیکون برنامه از پوشهٔ پرونده و ذره‌بین ساخته شده و شماره یا نشانهٔ اختصاصی پروندهٔ اول ندارد.
+## Recent changes
 
-## تغییرات نسخهٔ ۰.۴.۰
-
-- متن آغاز دربارهٔ شخصیت سام نادری است و به پروندهٔ خاصی وابسته نیست. شرح پروندهٔ ۴۷ روی کارت و صفحهٔ همان پرونده دیده می‌شود.
-- پاسخ‌های بازجویی در یادداشت گفت‌وگو می‌مانند؛ گفتهٔ مورد اعتراض هنگام اثبات تناقض کنار مدارک نمایش داده می‌شود.
-- موتور از روی پیشرفت، قدم بعدی و مقصد قابل‌دسترسی را مشخص می‌کند؛ دکمهٔ راه‌یابی در صحنه و صفحهٔ پرونده ظاهر می‌شود.
-- منطق قاتل، مدارک و پایان‌ها نسبت به نسخهٔ پیشین تغییر نکرده‌اند.
-
-## تغییرات نسخهٔ ۰.۵.۰
-
-- سه فرضیهٔ رقیب دربارهٔ صحنه، وقفهٔ دوربین و دروغ‌های شاهدان اضافه شد. بازیکن توضیح و مدرک پشتیبان انتخاب می‌کند؛ پاسخ اشتباه قابل اصلاح است و فرضیه‌های ثبت‌شده شرط گزارش نهایی‌اند.
-- صدای کوتاه لمس دکمه‌ها به موتور صوتی آفلاین اضافه شد؛ با گزینهٔ صدای بازی خاموش می‌شود.
-- ذخیره‌های قدیمی بدون فهرست فرضیه‌ها بازیابی می‌شوند و پروندهٔ قبلاً حل‌شده همچنان کامل نمایش داده می‌شود.
+- **0.5.0:** Added evidence-backed competing hypotheses and optional button sounds; kept old saves readable.
+- **0.4.0:** Rewrote the detective introduction for use across cases, kept interview answers in a readable record, and added next-lead navigation.
+- **0.3.0:** Added the detective desk, case catalog and solved-case status, plus an app icon independent of Case 47.
+- **0.2.0:** Added realistic scene, suspect, and evidence imagery, rainy-city visuals, piano/rain audio, and a chronology review.
