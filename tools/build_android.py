@@ -25,7 +25,7 @@ with zipfile.ZipFile(B/'unsigned.apk','a',zipfile.ZIP_DEFLATED) as z:
 run(SDK/'zipalign','-f','-p','4',B/'unsigned.apk',B/'aligned.apk')
 if not KEY.exists():
  run('keytool','-genkeypair','-keystore',KEY,'-storepass','android','-keypass','android','-alias','case47-test','-keyalg','RSA','-keysize','2048','-validity','10000','-dname','CN=Case 47 Test Build,O=Development,C=IR')
-OUT=D/'Case47-0.5.2-test.apk'
+OUT=D/'Case47-0.5.3-test.apk'
 run('java','-jar',SDK/'lib/apksigner.jar','sign','--ks',KEY,'--ks-key-alias','case47-test','--ks-pass','pass:android','--key-pass','pass:android','--out',OUT,B/'aligned.apk')
 run('java','-jar',SDK/'lib/apksigner.jar','verify','--verbose',OUT)
 run(SDK/'zipalign','-c','4',OUT)

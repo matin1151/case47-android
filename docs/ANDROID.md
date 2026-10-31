@@ -5,7 +5,7 @@
 - minimum Android: 8 / API 26
 - compile و target SDK: 35
 - شناسهٔ موقت آزمایش: ir.case47.lastcall.dev
-- نسخهٔ فعلی: 0.5.2 / versionCode 7
+- نسخهٔ فعلی: 0.5.3 / versionCode 8
 - نام نمایشی: پرونده‌ها
 - هیچ نامی برای مجموعه انتخاب نشده است.
 

@@ -6,9 +6,9 @@ The first case is free. The app opens on detective Sam Naderi's desk, where play
 
 ## Current state
 
-Version **0.5.2** is a playable test build, not a Café Bazaar release. It includes:
+Version **0.5.3** is a playable test build, not a Café Bazaar release. It includes:
 
-- 16 pieces of evidence, 22 interview questions, three contradictions, five deductions, and three competing hypotheses that require both an interpretation and supporting evidence.
+- 16 pieces of evidence, 23 interview questions, three contradictions, five deductions, and three competing hypotheses that require both an interpretation and supporting evidence.
 - Two report outcomes, retry without losing evidence, optional deduction hints, and an actionable next lead.
 - Automatic per-case saves, backup recovery, and manual save export/import. Older saves without hypothesis progress remain readable.
 - A portrait-first, right-to-left interface with locally bundled Vazirmatn fonts, case imagery, rain ambience, a quiet piano motif, and subtle button feedback. Audio can be turned off in settings.
@@ -18,7 +18,7 @@ The story and interface are in Persian. The technical documents in `docs/` are a
 
 ## Install on Android
 
-Build `dist/Case47-0.5.2-test.apk` using the instructions below, or obtain that test APK separately from the project owner. The `dist/` directory and signing key are intentionally excluded from Git.
+Build `dist/Case47-0.5.3-test.apk` using the instructions below, or obtain that test APK separately from the project owner. The `dist/` directory and signing key are intentionally excluded from Git.
 
 The APK requires **Android 8.0 (API 26) or newer**. Once installed, gameplay needs no internet connection. The app requests no internet, microphone, contacts, or personal-file permissions. Its test signing key is unsuitable for store publication.
 
@@ -61,6 +61,7 @@ Before a store release, the owner still needs a final application ID, a release 
 
 ## Recent changes
 
+- **0.5.3:** Accepted relevant extra evidence in arguments, hid premature questions, made corridor footage directly inspectable, clarified clock and medical evidence, and improved evidence selection and final-report proof choices after a blind playtest review.
 - **0.5.2:** Matched the clock image to 00:26, added evidence search and type filters, summarized report prerequisites, made failed-report feedback more useful, let active cases resume from the catalog, and blocked investigation actions until a case is started.
 
 - **0.5.1:** Reconciled the camera footage with the timeline, required both witness contradictions before judging their lies, and slightly reduced the home-screen heading.

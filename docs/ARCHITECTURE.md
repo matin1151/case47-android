@@ -15,15 +15,15 @@
 - `evidence`: id/title/kind/summary/body/source.
 - `characters[].questions`: id/label/answer/requires/grants.
 - `scenes[].hotspots`: evidence/label/x/y؛ مختصات درصدی تصویر.
-- `contradictions`: character/claim/proof/requires/response/grants.
-- `deductions`: prompt/proof/requires/result/hints.
-- `hypotheses`: id/title/prompt/requires/options/answer/proof/result. هر فرضیه یک برداشت و مجموعهٔ مدرک پشتیبان دارد؛ انتخاب اشتباه پیشرفت را تغییر نمی‌دهد.
+- `contradictions`: character/claim/proof/requires/response/grants و `related` اختیاری.
+- `deductions`: prompt/proof/requires/result/hints و `related` اختیاری.
+- `hypotheses`: id/title/prompt/requires/options/answer/proof/result و `related` اختیاری. هر فرضیه یک برداشت و مجموعهٔ مدرک پشتیبان دارد؛ انتخاب اشتباه پیشرفت را تغییر نمی‌دهد.
 - `timeline`: requires/slots/events.
-- `report`: requires/motives/methods/solution/reviewHints/success/failure. `reviewHints` برای چهار بخش حضور متهم، انگیزه، روش و مدارک، بازخورد غیرمستقیم می‌دهد.
+- `report`: requires/motives/methods/solution/reviewHints/success/failure و `proofGroups` اختیاری. `proofGroups` دسته‌های قابل‌قبول مدارک نهایی را تعریف می‌کند. `reviewHints` برای چهار بخش حضور متهم، انگیزه، روش و مدارک، بازخورد غیرمستقیم می‌دهد.
 
 شرط `requires` می‌تواند `evidence`, `questions`, `contradictions`, `deductions`, `hypotheses` (آرایه شناسه‌ها) و `timeline` (بولین) داشته باشد. همهٔ موارد شرط باید برقرار باشند. شناسه‌ها، نسخهٔ schema و ارجاعات هنگام ساخت Engine بررسی می‌شوند. قبل از انتشار پروندهٔ جدید، رسیدن به پایان باید تست شود.
 
-هر معما مجموعهٔ دقیق مدرک می‌خواهد. پاسخ اشتباه هیچ مدرکی را حذف نمی‌کند، منابع مصرف‌شونده وجود ندارد و تمام بازجویی‌ها قابل مرورند. شمار راهنما جدا ثبت می‌شود و دروازهٔ پیشرفت نیست.
+هر معما مدارک اصلی `proof` را می‌خواهد و مدارک مرتبطِ اضافه در `related` را می‌پذیرد. مدرک نامربوط با پیام روشن رد می‌شود. پاسخ اشتباه هیچ مدرکی را حذف نمی‌کند، منابع مصرف‌شونده وجود ندارد و تمام بازجویی‌ها قابل مرورند. شمار راهنما جدا ثبت می‌شود و دروازهٔ پیشرفت نیست.
 
 ## ذخیره
 
