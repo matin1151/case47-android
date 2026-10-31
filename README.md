@@ -1,8 +1,8 @@
-# Case 47: The Last Call
+# Kavian — کاویان
 
-An offline, Persian-language detective game for Android. This repository contains the game source, its data-driven case engine, the first playable case, tests, and a small native Android WebView shell. The game series has not been named.
+An offline, Persian-language detective game for Android. This repository contains the game source, its data-driven case engine, the first playable case, tests, and a small native Android WebView shell. The game is published by Bidrano Studio (استودیو بیدرانو). The first case is titled «پروندهٔ ۴۷: آخرین تماس».
 
-The first case is free. The app opens on detective Sam Naderi's desk, where players can start or resume cases and see which ones they have solved. Case 47 follows the death of Arman Rad in a locked office. Players examine three locations, interview three suspects, test conflicting accounts, reconstruct the timeline, and file a final report.
+The first case is free. The app opens on detective Farhad Kavian's desk, where players can start or resume cases and see which ones they have solved. Case 47 follows the death of Arman Rad in a locked office. Players examine three locations, interview three suspects, test conflicting accounts, reconstruct the timeline, and file a final report.
 
 ## Current state
 
@@ -57,7 +57,7 @@ See [`docs/ANDROID.md`](docs/ANDROID.md) for signing and release considerations,
 
 Automated tests cover the full playable route, wrong and correct reports, save recovery, offline browser play, audio state, the new hypotheses, and layouts from 320 to 1280 pixels wide. The APK has been built and its manifest, alignment, and v2/v3 signatures checked. **Installation and play on a physical Android phone have not yet been verified.**
 
-Before a store release, the owner still needs a final application ID, a release signing key, device testing, store assets and policy review. Café Bazaar in-app billing for future cases has not been connected or tested. The current APK uses a temporary application ID and test key.
+Before a store release, the owner still needs a final application ID, a release signing key, device testing, store assets and policy review. Café Bazaar in-app billing for future cases has not been connected or tested. The application ID is com.bidrano.kavian. The current build still uses a test signing key; a production signing key has not been created.
 
 ## Recent changes
 

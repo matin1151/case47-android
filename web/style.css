@@ -86,3 +86,5 @@ body{background-image:linear-gradient(#0d1415dd,#0d1415f2),url('assets/office.pn
 .proof-count,.proof-toolbar label{font-size:13px}
 .unlock-note{border-right:3px solid var(--gold);padding:12px 14px;background:#293d2e;color:#e7d9ac;font-size:14px;margin-top:17px}
 @media(max-width:480px){.proof-choices{max-height:45vh}.proof-option small,.proof-detail small{font-size:12px}.proof-detail p{font-size:14px}}
+
+.investigator-intro>p:not(.eyebrow){white-space:pre-line}
