@@ -28,3 +28,6 @@ Remaining:
 
 User requirement:
 After each completed development stage, checkpoint the latest source and tests on codex/room-six and provide its commit link.
+
+## Visual checkpoint 0.2.0
+Approved golden forest, modern villa, room views, seated character portraits, evidence and closeups are connected. Room/evidence images support zoom. All six JPEG sprite assets are embedded in the standalone HTML; source dimensions preserved. Mobile grid sizing corrected. Remaining: visual paper manipulation, narrative expansion and Android package.

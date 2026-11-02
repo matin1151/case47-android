@@ -1,0 +1,29 @@
+{
+  "note": "Approved generated artwork; JPEG encoding preserves source dimensions. Sprites keep source panels without generating new imagery.",
+  "assets": [
+    {
+      "file": "web/assets/room-six/forest.jpg",
+      "library_file_id": "libfile_b3e9c50681ec8191bd54a75696233b6d"
+    },
+    {
+      "file": "web/assets/room-six/villa.jpg",
+      "library_file_id": "libfile_27e7c6af781c8191933a8dca86ddea8d"
+    },
+    {
+      "file": "web/assets/room-six/rooms.jpg",
+      "library_file_id": "libfile_6d821afa76388191b39890d049ffd893"
+    },
+    {
+      "file": "web/assets/room-six/portraits.jpg",
+      "library_file_id": "libfile_cf105e51699081919d6ae7963336dac2"
+    },
+    {
+      "file": "web/assets/room-six/evidence.jpg",
+      "library_file_id": "libfile_1f320c3f63d48191a13752c5e3e05f9d"
+    },
+    {
+      "file": "web/assets/room-six/closeups.jpg",
+      "library_file_id": "libfile_583bc3fd30c081918d491045cf7a560a"
+    }
+  ]
+}

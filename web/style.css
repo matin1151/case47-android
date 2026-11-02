@@ -95,3 +95,49 @@ body[data-case-id="room-six"] .portrait-thumb,body[data-case-id="room-six"] .por
 .r6-map{padding:20px;border:1px solid #837554;border-radius:16px;margin-bottom:24px;background:#15251e}.r6-north{text-align:center;color:#d6bb81}.r6-floor{display:grid;direction:ltr;grid-template-columns:repeat(3,1fr);grid-template-rows:55px 105px 45px 130px;gap:8px}.r6-room,.r6-kitchen,.r6-corridor{direction:rtl;display:grid;place-content:center;border:1px solid #827452;border-radius:6px;color:#efe7ce;background:#2c3c30;padding:8px;min-width:0}.r6-room.selected{outline:2px solid #d8b877}.r6-guest{grid-column:1;grid-row:1/3}.r6-archive{grid-column:2;grid-row:1/3}.r6-office{grid-column:3;grid-row:2}.r6-hidden{grid-column:3;grid-row:1;background:#433e2c}.r6-corridor{grid-column:1/4;grid-row:3;background:#1b2a22}.r6-kitchen{grid-column:1;grid-row:4}.r6-living{grid-column:2;grid-row:4}.r6-study{grid-column:3;grid-row:4}.r6-measure{display:grid;gap:10px;margin-bottom:20px}.r6-measure input{font:inherit;min-height:48px;padding:10px;border:1px solid #a08b60;border-radius:8px;background:#17241d;color:#fff}.r6-document-mark{padding:20px;border-bottom:1px solid #8d7a50;color:#dfc995}.report-feedback p{white-space:pre-line}body[data-case-id="room-six"] .scene-board{min-height:260px}body[data-case-id="room-six"] .scene-disclaimer:after{content:' تصاویر نهایی تأییدشده هنوز به این نسخه متصل نشده‌اند.'}body[data-case-id="room-six"] .portrait-large{height:80px}body[data-case-id="room-six"] .library-card-body p{line-height:1.9}@media(max-width:480px){.r6-map{padding:10px}.r6-room,.r6-kitchen{font-size:12px}.r6-floor{gap:5px}}
 
 body[data-case-id="room-six"]{background-image:radial-gradient(ellipse at top,#36492e,#101b16 75%)}
+
+:root{
+--r6-forest:url('assets/room-six/forest.jpg');
+--r6-villa:url('assets/room-six/villa.jpg');
+--r6-rooms:url('assets/room-six/rooms.jpg');
+--r6-portraits:url('assets/room-six/portraits.jpg');
+--r6-evidence:url('assets/room-six/evidence.jpg');
+--r6-closeups:url('assets/room-six/closeups.jpg');
+}
+body[data-case-id="room-six"]{background-image:linear-gradient(#14201735,#10190f70),var(--r6-forest);background-position:center;background-size:cover;background-attachment:fixed}
+body[data-case-id="room-six"] .topbar{background:#122015e8;backdrop-filter:blur(12px)}
+body[data-case-id="room-six"] .dialog-content{background:linear-gradient(#142017b8,#142017e8),var(--r6-forest) center/cover}
+body[data-case-id="room-six"] .evidence-card,body[data-case-id="room-six"] .deduction-card,body[data-case-id="room-six"] .report-form,body[data-case-id="room-six"] .interview-panel{background-color:#142017e8;border-color:#8d784b}
+body[data-case-id="room-six"] .r6-map{background:#15251ee8}
+.library-card[data-id="room-six"] .library-cover,body[data-case-id="room-six"] .case-cover{background-image:var(--r6-villa);background-size:300% 200%;background-position:0 0}
+body[data-case-id="room-six"] .scene-board{aspect-ratio:1;height:auto;min-height:0;background-repeat:no-repeat;background-size:300% 200%;border-color:#b59459}
+body[data-case-id="room-six"] .scene-board.r6-living{background-image:var(--r6-villa);background-position:50% 0}
+body[data-case-id="room-six"] .scene-board.r6-archive{background-image:var(--r6-rooms);background-position:50% 0}
+body[data-case-id="room-six"] .scene-board.r6-office{background-image:var(--r6-villa);background-position:0 100%}
+body[data-case-id="room-six"] .scene-board.r6-guest{background-image:var(--r6-rooms);background-position:0 0}
+body[data-case-id="room-six"] .scene-board.r6-study{background-image:var(--r6-villa);background-position:50% 100%}
+body[data-case-id="room-six"] .scene-board.r6-terrace{background-image:var(--r6-rooms);background-position:100% 100%}
+body[data-case-id="room-six"] .scene-board.r6-entry{background-image:var(--r6-rooms);background-position:0 100%}
+body[data-case-id="room-six"] .scene-board.r6-hidden{background-image:var(--r6-villa);background-position:100% 100%}
+body[data-case-id="room-six"] .scene-board.r6-tank{background-image:var(--r6-rooms);background-position:50% 100%}
+body[data-case-id="room-six"] .scene-board::before{opacity:.1}
+.r6-scene-zoom{position:absolute;bottom:14px;right:14px;z-index:3;border:1px solid #d5b87b;background:#132017df;padding:8px 14px;border-radius:6px;color:#fff}
+body[data-case-id="room-six"] .scene-disclaimer:after{content:''}
+.r6-photo{position:relative;display:block;width:100%;aspect-ratio:1;border:1px solid #b49a64;border-radius:8px;background-size:300% 200%;background-position:var(--r6-x) var(--r6-y);background-repeat:no-repeat}
+.r6-photo span{position:absolute;bottom:10px;right:10px;background:#172119df;color:#fff4da;padding:5px 12px;border-radius:5px}
+.r6-sheet-villa{background-image:var(--r6-villa)}.r6-sheet-rooms{background-image:var(--r6-rooms)}.r6-sheet-portraits{background-image:var(--r6-portraits)}.r6-sheet-evidence{background-image:var(--r6-evidence)}.r6-sheet-closeups{background-image:var(--r6-closeups)}
+body[data-case-id="room-six"] .portrait-thumb,body[data-case-id="room-six"] .portrait-large{background-image:var(--r6-portraits);background-size:300% 200%;background-repeat:no-repeat}
+body[data-case-id="room-six"] .portrait-large{height:auto;aspect-ratio:1;width:100%;max-width:440px;margin:auto}
+body[data-case-id="room-six"] .portrait-behzad{background-position:0 0}
+body[data-case-id="room-six"] .portrait-mina{background-position:100% 0}
+body[data-case-id="room-six"] .portrait-leila{background-position:0 100%}
+body[data-case-id="room-six"] .portrait-saman{background-position:50% 100%}
+.r6-zoom-controls{display:grid;gap:10px;margin:16px 0}.r6-zoom-controls input{width:100%;accent-color:#c9a56c}
+.r6-zoom-viewport{overflow:auto;width:100%;max-height:65vh;border:1px solid #a38a56;border-radius:8px;background:#152117;direction:ltr}
+.r6-zoom-canvas{width:100%;aspect-ratio:1;background-size:300% 200%;background-position:var(--r6-x) var(--r6-y);background-repeat:no-repeat}
+
+body[data-case-id="room-six"] .scene-layout{grid-template-columns:minmax(0,1.15fr) minmax(280px,1fr);align-items:start}body[data-case-id="room-six"] .scene-board{order:0;grid-column:auto;width:100%;max-width:none;margin:0}body[data-case-id="room-six"] .scene-side{order:1;grid-column:auto;background:#122017e8;padding:18px;border-radius:8px}body[data-case-id="room-six"] .scene-tabs .chip{background:#152219e8}body[data-case-id="room-six"] .page-heading{background:#122017d9;padding:18px;border-radius:8px}@media(max-width:760px){body[data-case-id="room-six"] .scene-layout{grid-template-columns:minmax(0,1fr)}}
+
+body[data-case-id="room-six"] .scene-board{grid-row:auto}body[data-case-id="room-six"] .r6-scene-zoom{display:block}
+
+body[data-case-id="room-six"] .person-tab{background:#142018ef;border-color:#8d784b}body[data-case-id="room-six"] .person-tab.selected{background:#293921ef}

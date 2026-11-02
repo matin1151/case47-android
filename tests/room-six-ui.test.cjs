@@ -11,10 +11,10 @@ await page.goto(pathToFileURL(path.resolve(__dirname,'../dist/kavian-room-six-de
 assert.equal(await page.locator('.library-card').count(),2);
 await page.locator('[data-action="select-case"][data-id="room-six"]').click();
 await page.locator('[data-action="start"]').click();await page.locator('[data-action="begin"]').click();
-assert.equal(await page.locator('.r6-map').count(),1);
+assert.equal(await page.locator('.r6-map').count(),1);assert(await page.locator('.scene-board').evaluate(e=>e.getBoundingClientRect().width>250));assert(await page.locator('.scene-board').evaluate(e=>getComputedStyle(e).backgroundImage.startsWith('url("data:image/jpeg')));await page.locator('.r6-scene-zoom').click();assert.equal(await page.locator('.r6-zoom-canvas').count(),1);await page.locator('#r6-zoom-range').fill('200');await page.locator('#dialog [data-action="close"]').click();
 assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
 await page.locator('[data-action="collect"][data-id="E01"]').first().click();
-assert.equal(await page.locator('#dialog .evidence-photo').count(),0);await page.locator('#dialog [data-action="close"]').first().click();
+assert.equal(await page.locator('#dialog .r6-photo').count(),1);await page.locator('#dialog [data-action="close"]').first().click();
 for(const [scene,ids] of [['r6-archive',['E02']],['r6-office',['E03']]]){
 await page.locator('[data-action="scene"][data-id="'+scene+'"]').first().click();
 for(const id of ids){await page.locator('[data-action="collect"][data-id="'+id+'"]').first().click();await page.locator('#dialog [data-action="close"]').first().click();}
