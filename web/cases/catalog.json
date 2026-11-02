@@ -6,6 +6,12 @@
       "file": "case47.json",
       "entitlement": "free",
       "productId": null
+    },
+    {
+      "id": "room-six",
+      "file": "room-six.json",
+      "entitlement": "free",
+      "productId": null
     }
   ]
 }
