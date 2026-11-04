@@ -72,7 +72,7 @@ class Engine {
   if(this.state.ending==='success')return {view:'evidence',label:'مرور مدارک',text:'پرونده بسته شد. مدارک و استدلال‌ها برای مرور در دسترس‌اند.'};
   if(this.state.ending==='failure')return {view:'report',label:'بازبینی گزارش',text:'گزارش به نتیجه نرسید. مدارک و انگیزه را دوباره کنار هم بگذار.'};
   for(const s of this.data.scenes){const remaining=s.hotspots.filter(h=>!this.state.evidence.includes(h.evidence));if(this.meets(s.requires)&&remaining.length)return {view:'scene',id:s.id,label:'بررسی '+s.name,text:'در '+s.name+' هنوز '+remaining.length+' مورد بررسی‌نشده هست.'};}
-  for(const c of this.data.characters){const q=c.questions.find(q=>this.meets(q.requires)&&!this.state.questions.includes(q.id));if(q)return {view:'interview',id:c.id,label:'گفت‌وگو با '+c.name,text:'از '+c.name+' دربارهٔ «'+q.label+'» بپرس.'};}
+  for(const c of this.data.characters){const q=c.questions.find(q=>this.meets(q.requires)&&!this.state.questions.includes(q.id));if(q)return {view:'interview',id:c.id,label:'گفت‌وگو با '+c.name,text:'از '+c.name+' بپرس\n'+q.label};}
   for(const c of this.data.contradictions)if(!this.state.contradictions.includes(c.id)&&this.meets(c.requires))return {view:'interview',id:c.character,label:'بررسی تناقض',text:'ادعای «'+c.title+'» را با مدارک بسنج.'};
   for(const p of this.data.deductions)if(!this.state.deductions.includes(p.id)&&this.meets(p.requires))return {view:'board',label:'رفتن به تابلوی استنتاج',text:'برای «'+p.title+'» مدارک مرتبط را کنار هم بگذار.'};
   for(const h of this.data.hypotheses)if(!this.state.hypotheses.includes(h.id)&&this.meets(h.requires))return {view:'board',label:'آزمودن فرضیه',text:'روی تابلوی استنتاج، «'+h.title+'» را با شواهد بسنج.'};

@@ -184,3 +184,15 @@ body[data-case-id="room-six"] .document-body{white-space:pre-line}
 @media(max-width:760px){body[data-case-id="room-six"] .scene-tabs{display:flex;flex-wrap:wrap}body[data-case-id="room-six"] .scene-tabs .chip{flex:1 1 145px;padding:8px 10px;font-size:12px;line-height:1.9}}
 
 .r6-raha-souvenir{width:100%;aspect-ratio:1;background:url('assets/room-six/raha-souvenir-v4.jpg') center/cover}
+
+/* Readable text cards over the golden forest; keep document paper and photographs intact. */
+body[data-case-id="room-six"]{--muted:#c8d3ca;--ink:#f1f2e9}
+body[data-case-id="room-six"] :is(.page-heading,.scene-side,.field-note,.lead-preview,.evidence-card,.deduction-card,.interview-panel,.report-form,.r6-map,.person-tab,.question,.contradiction-row,.hypothesis-card,.timeline-row,.proof-picker,.proof-option,.report-feedback,.locked-note,.interview-notes,.case-intro,.library-card-body,.future-case){background:#0d1913;border-color:#52684f}
+body[data-case-id="room-six"] .dialog-content{background:linear-gradient(#08130df5,#08130df5),var(--r6-forest) center/cover}
+body[data-case-id="room-six"] .dialog-head{background:#0d1913}
+body[data-case-id="room-six"] :is(.document-body,.source){background:#0c1712;padding:18px;border-radius:7px}
+body[data-case-id="room-six"] :is(.scene-disclaimer,.image-caption,.content-notice){background:#0d1913;color:#c8d3ca;padding:10px 12px;border-radius:5px}
+body[data-case-id="room-six"] .scene-caption{background:linear-gradient(#08130df7 0%,#08130deb 65%,transparent)}
+body[data-case-id="room-six"] .scene-caption small{color:#dce6d9}
+body[data-case-id="room-six"] .person-tab.selected{background:#263c2b;border-color:#c4a96b}
+.field-note p,.lead-preview p,.document-body{white-space:pre-line}

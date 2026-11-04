@@ -37,3 +37,6 @@ Recovered November 3 changes supersede the earlier zoom checkpoint: zoom is remo
 
 ## Approved portrait revision 0.3.1
 Matin approved the revised portraits on 2026-11-04. The active portrait atlas is `portraits-v4.jpg`: restrained, individual expressions of concern for the other characters. Raha's evidence photograph is `raha-souvenir-v4.jpg`, a happy souvenir portrait beside the living-room window with the forest and sofa in view. E06 title, summary, body, finding location versus photograph location, scene label, accessible image description, and the pendant deduction now agree. The photo no longer claims to show the archive or prove presence in it. The found pendant and photograph support object comparison only; the remaining evidence chain is unchanged.
+
+## Readability revision 0.3.2
+Text cards now use opaque dark surfaces and lighter secondary text over the forest. Every interview next-step guide places the instruction on its own line, followed by the direct question on the next line. Saman's first question reads «خروج رها را دیدی؟». The enlarged wall illustration in E22 is replaced with a readable inspection record; the evidence and original room view are retained. No image zoom control is provided.
