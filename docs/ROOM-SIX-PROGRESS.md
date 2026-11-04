@@ -40,3 +40,6 @@ Matin approved the revised portraits on 2026-11-04. The active portrait atlas is
 
 ## Readability revision 0.3.2
 Text cards now use opaque dark surfaces and lighter secondary text over the forest. Every interview next-step guide places the instruction on its own line, followed by the direct question on the next line. Saman's first question reads «خروج رها را دیدی؟». The enlarged wall illustration in E22 is replaced with a readable inspection record; the evidence and original room view are retained. No image zoom control is provided.
+
+## Engagement revision 0.4.0
+The first clue now has a consequential opening choice with a recoverable slower route. A visible detective workflow and actionable next steps guide scene inspection, interviews, claim checks, chronology and independent reports. All ten deduction guides and four confrontation guides have three concrete levels and a final placement aid for discovered documents. Direct contradictory evidence is sufficient for the limited claim, while the full report still requires its original chain. New milestone messages persist without reward farming. A faster repeating melody and quiet forest ambience replace the earlier sparse/rain profile. The sale preparation and reason for the gathering are explicit in the introduction, Leila's dialogue and E01. See `ROOM-SIX-ENGAGEMENT-REVIEW.md` for scope and verification.

@@ -11,7 +11,8 @@
     "test:resilience": "node tests/resilience.test.cjs",
     "build:web:node": "node tools/build_web.cjs",
     "test:room-six": "node --test tests/room-six.test.cjs",
-    "test:room-six:ui": "node tests/room-six-ui.test.cjs"
+    "test:room-six:ui": "node tests/room-six-ui.test.cjs",
+    "test:room-six:journey": "node tests/room-six-journey-ui.test.cjs"
   },
   "devDependencies": {
     "playwright": "1.64.1"
