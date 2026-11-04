@@ -100,7 +100,7 @@ body[data-case-id="room-six"]{background-image:radial-gradient(ellipse at top,#3
 --r6-forest:url('assets/room-six/forest.jpg');
 --r6-villa:url('assets/room-six/villa.jpg');
 --r6-rooms:url('assets/room-six/rooms.jpg');
---r6-portraits:url('assets/room-six/portraits.jpg');
+--r6-portraits:url('assets/room-six/portraits-v3.jpg');
 --r6-evidence:url('assets/room-six/evidence.jpg');
 --r6-closeups:url('assets/room-six/closeups.jpg');
 }
@@ -121,7 +121,6 @@ body[data-case-id="room-six"] .scene-board.r6-entry{background-image:var(--r6-ro
 body[data-case-id="room-six"] .scene-board.r6-hidden{background-image:var(--r6-villa);background-position:100% 100%}
 body[data-case-id="room-six"] .scene-board.r6-tank{background-image:var(--r6-rooms);background-position:50% 100%}
 body[data-case-id="room-six"] .scene-board::before{opacity:.1}
-.r6-scene-zoom{position:absolute;bottom:14px;right:14px;z-index:3;border:1px solid #d5b87b;background:#132017df;padding:8px 14px;border-radius:6px;color:#fff}
 body[data-case-id="room-six"] .scene-disclaimer:after{content:''}
 .r6-photo{position:relative;display:block;width:100%;aspect-ratio:1;border:1px solid #b49a64;border-radius:8px;background-size:300% 200%;background-position:var(--r6-x) var(--r6-y);background-repeat:no-repeat}
 .r6-photo span{position:absolute;bottom:10px;right:10px;background:#172119df;color:#fff4da;padding:5px 12px;border-radius:5px}
@@ -132,12 +131,56 @@ body[data-case-id="room-six"] .portrait-behzad{background-position:0 0}
 body[data-case-id="room-six"] .portrait-mina{background-position:100% 0}
 body[data-case-id="room-six"] .portrait-leila{background-position:0 100%}
 body[data-case-id="room-six"] .portrait-saman{background-position:50% 100%}
-.r6-zoom-controls{display:grid;gap:10px;margin:16px 0}.r6-zoom-controls input{width:100%;accent-color:#c9a56c}
-.r6-zoom-viewport{overflow:auto;width:100%;max-height:65vh;border:1px solid #a38a56;border-radius:8px;background:#152117;direction:ltr}
-.r6-zoom-canvas{width:100%;aspect-ratio:1;background-size:300% 200%;background-position:var(--r6-x) var(--r6-y);background-repeat:no-repeat}
 
 body[data-case-id="room-six"] .scene-layout{grid-template-columns:minmax(0,1.15fr) minmax(280px,1fr);align-items:start}body[data-case-id="room-six"] .scene-board{order:0;grid-column:auto;width:100%;max-width:none;margin:0}body[data-case-id="room-six"] .scene-side{order:1;grid-column:auto;background:#122017e8;padding:18px;border-radius:8px}body[data-case-id="room-six"] .scene-tabs .chip{background:#152219e8}body[data-case-id="room-six"] .page-heading{background:#122017d9;padding:18px;border-radius:8px}@media(max-width:760px){body[data-case-id="room-six"] .scene-layout{grid-template-columns:minmax(0,1fr)}}
 
-body[data-case-id="room-six"] .scene-board{grid-row:auto}body[data-case-id="room-six"] .r6-scene-zoom{display:block}
+body[data-case-id="room-six"] .scene-board{grid-row:auto}
 
 body[data-case-id="room-six"] .person-tab{background:#142018ef;border-color:#8d784b}body[data-case-id="room-six"] .person-tab.selected{background:#293921ef}
+
+/* Room Six playtest revision: fixed scene framing and readable evidence. */
+:root{--r6-revised:url('assets/room-six/environments-v3.jpg')}
+body[data-case-id="room-six"] .workspace{max-width:1240px}
+body[data-case-id="room-six"] .scene-layout{grid-template-columns:minmax(0,1.4fr) minmax(280px,1fr)}
+body[data-case-id="room-six"] .scene-board.r6-guest{background-image:var(--r6-revised);background-position:0 0}
+body[data-case-id="room-six"] .scene-board.r6-archive{background-image:var(--r6-revised);background-position:50% 0}
+body[data-case-id="room-six"] .scene-board.r6-study{background-image:var(--r6-revised);background-position:100% 0}
+body[data-case-id="room-six"] .scene-board.r6-terrace{background-image:var(--r6-revised);background-position:0 100%}
+body[data-case-id="room-six"] .scene-board.r6-office{background-image:var(--r6-revised);background-position:50% 100%}
+body[data-case-id="room-six"] .scene-board.r6-tank{background-image:var(--r6-revised);background-position:100% 100%}
+.r6-room-description{margin:0 0 16px;padding-bottom:14px;border-bottom:1px solid #71805c;color:#e8dfc9;font-size:14px;line-height:2.1}
+.r6-map summary{cursor:pointer;color:#e9d09b;min-height:44px;padding:8px}
+.r6-plan,.r6-site-plan{display:block;width:100%;height:auto;max-width:620px;margin:12px auto;color:#e7dfc4;direction:rtl}
+.r6-plan{font-family:var(--font);font-size:14px;fill:currentColor}
+.map-outline{fill:#16271d;stroke:#a2966a;stroke-width:5}.map-room{fill:#314a39;stroke:#b0a17a;stroke-width:4}.map-zone.selected .map-room{fill:#665d38}.map-zone[role="button"]{cursor:pointer}.map-zone:focus .map-room{stroke:#fff0bb;stroke-width:6}.map-service{fill:#41534a;stroke:#b0a17a;stroke-width:4}.map-hall{fill:#23372b;stroke:#9a8e66;stroke-width:3}.map-door{stroke:#e0cca4;stroke-width:2;fill:none}.map-window{stroke:#8ac7c8;stroke-width:5}
+.r6-exhibit{margin:0 0 18px;border:1px solid #9e885a;border-radius:8px;overflow:hidden;background:#213629}
+.r6-exhibit figcaption{padding:10px 14px;background:#17271e;color:#eddbb7;font-size:14px}
+.r6-exhibit .r6-photo{border:0;border-radius:0;cursor:default}
+.r6-readable-sheet{padding:clamp(18px,5vw,32px);background:linear-gradient(115deg,#eee3c9,#daccab);color:#302e25;line-height:2.1}
+.r6-readable-sheet h3{font-size:17px;margin-bottom:14px}.r6-readable-sheet p{font-size:15px}.r6-readable-sheet small{color:#4c4a3b}
+.r6-readable-sheet dl{display:grid;grid-template-columns:1fr auto;gap:14px;margin:18px 0}.r6-readable-sheet dd{margin:0;font-weight:700}.r6-readable-sheet table{border-collapse:collapse;width:100%;font-size:14px}.r6-readable-sheet th,.r6-readable-sheet td{border-bottom:1px solid #b0a380;padding:8px;text-align:right}.r6-readable-sheet blockquote{border-inline-start:3px solid #736446;margin:16px 0;padding:12px;background:#fff5}
+.r6-stamp{display:inline-block;color:#764e3a;border:2px solid #926f54;padding:4px 12px;margin-top:16px;transform:rotate(-3deg);font-size:12px}
+.r6-document-note{padding:12px 16px;font-size:13px;color:#e6dbc0}
+.r6-phone-table{padding:24px;background:repeating-linear-gradient(4deg,#513823 0,#62432b 3px,#513823 7px,#493121 20px)}
+.r6-phone{max-width:280px;margin:auto;border:9px solid #121815;border-radius:28px;padding:12px 9px;background:#24352d;box-shadow:8px 14px 18px #0008;text-align:center;color:#f1edda;overflow:hidden}
+.r6-phone p{font-size:13px;margin-bottom:10px}.r6-phone .r6-photo{aspect-ratio:1}.r6-call-status{font-size:12px;padding:10px 0}.r6-call-end{display:block;background:#9f5149;border-radius:50%;width:42px;height:42px;line-height:42px;margin:8px auto}.r6-call-log{padding:28px 16px;min-height:280px}.r6-call-log h3{font-size:28px}.r6-call-log blockquote{font-size:13px;line-height:2;margin:15px 0;padding:10px;border-top:1px solid #687761}
+.r6-chat{background:#1d3030;padding:24px 18px}.r6-chat>p{font-size:12px;color:#bdcdbf}.r6-chat blockquote{margin:14px 0 14px 28px;background:#365145;padding:14px;border-radius:16px 16px 0 16px;font-size:15px}.r6-chat blockquote+blockquote{margin:14px 28px 14px 0;background:#4a5640;border-radius:16px 16px 16px 0}
+.r6-cctv{position:relative}.r6-cctv>span{position:absolute;top:12px;right:10px;background:#10201be8;padding:6px 10px;font-size:12px}.r6-cctv .r6-photo{filter:saturate(.45)}
+.r6-paper-table{padding:30px 18px;background:repeating-linear-gradient(7deg,#5d422a 0,#684b31 3px,#503a26 14px);min-height:230px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;overflow:hidden}
+.r6-paper-upper,.r6-paper-lower{width:100%;max-width:320px;box-sizing:border-box;color:#443a29;background:linear-gradient(100deg,#eee0bb,#e5d2a8);padding:28px 18px;font-size:16px;line-height:2;text-align:right;min-height:110px}
+.r6-paper-upper{clip-path:polygon(0 0,100% 0,100% 90%,91% 96%,83% 88%,72% 98%,62% 91%,53% 96%,44% 87%,33% 98%,22% 90%,11% 97%,0 91%);padding-bottom:35px}
+.r6-paper-lower{clip-path:polygon(0 0,11% 6%,22% -1%,33% 7%,44% -4%,53% 5%,62% 0,72% 7%,83% -3%,91% 5%,100% -1%,100% 100%,0 100%);margin-top:-10px;transform:rotate(var(--paper-angle,180deg));transform-origin:center;transition:transform .3s;min-height:90px;padding-top:18px}
+.r6-angle{display:inline-block;margin:10px 16px;font-size:14px;color:#d7c69c}
+.r6-section-help{float:left;font-size:13px;border:1px solid #627052;border-radius:6px;margin-bottom:12px}.page-heading{clear:both}
+body[data-case-id="room-six"] .evidence-grid{gap:10px;grid-template-columns:repeat(3,minmax(0,1fr))}
+body[data-case-id="room-six"] .evidence-card{padding:14px;gap:8px}
+body[data-case-id="room-six"] .evidence-card h2{font-size:16px;line-height:1.8}
+body[data-case-id="room-six"] .evidence-card p{font-size:12px;line-height:1.85}
+body[data-case-id="room-six"] .evidence-card .card-link{padding-top:2px}
+body[data-case-id="room-six"] .proof-choices{max-height:none}
+body[data-case-id="room-six"] .document-body{white-space:pre-line}
+@media(max-width:760px){body[data-case-id="room-six"] .scene-layout{grid-template-columns:minmax(0,1fr)}body[data-case-id="room-six"] .workspace{padding-inline:16px}body[data-case-id="room-six"] .evidence-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.r6-plan{font-size:15px}}
+.map-fixtures{pointer-events:none}.map-furniture{fill:#a8a17b33;stroke:#b8af86;stroke-width:1.5}
+@media(max-width:760px){body[data-case-id="room-six"] .scene-tabs{display:flex;flex-wrap:wrap}body[data-case-id="room-six"] .scene-tabs .chip{flex:1 1 145px;padding:8px 10px;font-size:12px;line-height:1.9}}
+
+.r6-raha-archive{width:100%;aspect-ratio:1;background:url('assets/room-six/raha-archive-v3.jpg') center/cover}

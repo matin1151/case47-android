@@ -31,3 +31,6 @@ After each completed development stage, checkpoint the latest source and tests o
 
 ## Visual checkpoint 0.2.0
 Approved golden forest, modern villa, room views, seated character portraits, evidence and closeups are connected. Room/evidence images support zoom. All six JPEG sprite assets are embedded in the standalone HTML; source dimensions preserved. Mobile grid sizing corrected. Remaining: visual paper manipulation, narrative expansion and Android package.
+
+## Playtest revision 0.3.0 (2026-11-04)
+Recovered November 3 changes supersede the earlier zoom checkpoint: zoom is removed, scenes have specific identities and natural evidence positions, unique readable exhibits replace repeated generic images, the map and missing-document clues are explicit, and the puzzle picker supports direct multi-selection. New library/archive/terrace artwork, concerned portraits, paper rotation and a long original offline score are connected. See `ROOM-SIX-PLAYTEST-REVISION.md` for request mapping, provenance and verification. New artwork awaits user visual review. Android packaging remains separate.

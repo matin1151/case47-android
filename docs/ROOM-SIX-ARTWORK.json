@@ -25,5 +25,15 @@
       "file": "web/assets/room-six/closeups.jpg",
       "library_file_id": "libfile_583bc3fd30c081918d491045cf7a560a"
     }
-  ]
+  ],
+  "revisions": {
+    "date": "2026-11-04",
+    "approval": "new artwork available for user visual review",
+    "method": "Built-in image generator; project reference atlases retained",
+    "files": [
+      "web/assets/room-six/environments-v3.jpg",
+      "web/assets/room-six/portraits-v3.jpg",
+      "web/assets/room-six/raha-archive-v3.jpg"
+    ]
+  }
 }

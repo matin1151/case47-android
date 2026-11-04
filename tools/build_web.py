@@ -6,9 +6,11 @@ for item in catalog['cases']:
  case=json.loads((W/'cases'/item['file']).read_text());cases.append(case)
 (W/'cases.bundle.js').write_text('window.CASE_CATALOG = '+json.dumps({'schemaVersion':1,'investigator':json.loads((W/'investigator.json').read_text()),'cases':cases},ensure_ascii=False)+';\n')
 html=(W/'index.html').read_text();css=(W/'style.css').read_text()
-for name in ['vazirmatn-regular.ttf','vazirmatn-bold.ttf','office.png','security.png','archive.png','suspects.png','evidence.png','clock.png','investigator.png']:
- mime='image/png' if name.endswith('png') else 'font/ttf'
- css=css.replace('assets/'+name,'data:'+mime+';base64,'+base64.b64encode((W/'assets'/name).read_bytes()).decode())
+def asset(m):
+ name=m.group(0)
+ mime='image/png' if name.endswith('.png') else 'image/jpeg' if name.endswith('.jpg') else 'font/ttf'
+ return 'data:'+mime+';base64,'+base64.b64encode((W/name).read_bytes()).decode()
+css=re.sub(r'assets/[A-Za-z0-9_/-]+\.(?:png|jpg|ttf)',asset,css)
 html=html.replace('<link rel="stylesheet" href="style.css">','<style>'+css+'</style>')
 hashes=[]
 def inline(m):
@@ -17,4 +19,5 @@ def inline(m):
 html=re.sub(r'<script src="([^"]+)"></script>',inline,html)
 html=html.replace("script-src 'self'","script-src "+' '.join(hashes))
 (D/'case47-standalone.html').write_text(html)
+(D/'kavian-room-six-dev.html').write_text(html)
 print('Data bundle and standalone HTML built:',len(html.encode()),'bytes')
