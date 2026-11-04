@@ -35,5 +35,14 @@
       "web/assets/room-six/portraits-v3.jpg",
       "web/assets/room-six/raha-archive-v3.jpg"
     ]
+  },
+  "approved_portrait_revision": {
+    "date": "2026-11-04",
+    "approved_by": "Matin, in conversation",
+    "files": [
+      "web/assets/room-six/portraits-v4.jpg",
+      "web/assets/room-six/raha-souvenir-v4.jpg"
+    ],
+    "notes": "Raha happy by the living-room window; other characters have distinct restrained concern. E06 description, source, alt text and pendant deduction now match the actual souvenir photograph."
   }
 }

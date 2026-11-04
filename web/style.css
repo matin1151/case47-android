@@ -100,7 +100,7 @@ body[data-case-id="room-six"]{background-image:radial-gradient(ellipse at top,#3
 --r6-forest:url('assets/room-six/forest.jpg');
 --r6-villa:url('assets/room-six/villa.jpg');
 --r6-rooms:url('assets/room-six/rooms.jpg');
---r6-portraits:url('assets/room-six/portraits-v3.jpg');
+--r6-portraits:url('assets/room-six/portraits-v4.jpg');
 --r6-evidence:url('assets/room-six/evidence.jpg');
 --r6-closeups:url('assets/room-six/closeups.jpg');
 }
@@ -183,4 +183,4 @@ body[data-case-id="room-six"] .document-body{white-space:pre-line}
 .map-fixtures{pointer-events:none}.map-furniture{fill:#a8a17b33;stroke:#b8af86;stroke-width:1.5}
 @media(max-width:760px){body[data-case-id="room-six"] .scene-tabs{display:flex;flex-wrap:wrap}body[data-case-id="room-six"] .scene-tabs .chip{flex:1 1 145px;padding:8px 10px;font-size:12px;line-height:1.9}}
 
-.r6-raha-archive{width:100%;aspect-ratio:1;background:url('assets/room-six/raha-archive-v3.jpg') center/cover}
+.r6-raha-souvenir{width:100%;aspect-ratio:1;background:url('assets/room-six/raha-souvenir-v4.jpg') center/cover}

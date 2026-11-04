@@ -46,3 +46,6 @@ Room Six's new synthesized composition in `web/audio.js` was written for Bidrano
 - Mobile screenshots inspected for map, library, archive, terrace and video-call exhibit.
 
 No APK was built and no real Android device or store submission was tested. Music's subjective feel and the revised art remain appropriate for a final user playthrough.
+
+## Approved portrait revision 0.3.1
+Matin approved the revised portraits on 2026-11-04. The active portrait atlas is `portraits-v4.jpg`: restrained, individual expressions of concern for the other characters. Raha's evidence photograph is `raha-souvenir-v4.jpg`, a happy souvenir portrait beside the living-room window with the forest and sofa in view. E06 title, summary, body, finding location versus photograph location, scene label, accessible image description, and the pendant deduction now agree. The photo no longer claims to show the archive or prove presence in it. The found pendant and photograph support object comparison only; the remaining evidence chain is unchanged.
