@@ -103,3 +103,23 @@ test('old saves preserve discoveries and explicitly require revised historic che
  const r=new Engine(data,s);assert.deepEqual(r.state.evidence,s.evidence);assert.equal(r.state.ending,null);
  assert(r.state.reportFeedback.includes('به‌روز'));assert(!r.state.deductions.includes('past'));
 });
+
+test('all interview questions unlock only after their stated prerequisites',()=>{
+ const full=play();
+ for(const c of data.characters)for(const q of c.questions){
+  const first=start();
+  if(Object.keys(q.requires).length)assert.throws(()=>first.ask(c.id,q.id),q.id);
+  else assert.equal(first.ask(c.id,q.id).id,q.id);
+  assert(full.meets(q.requires),q.id);assert.equal(full.ask(c.id,q.id).id,q.id);
+ }
+});
+test('every optional clue guide has three levels and restores its count without resolving the clue',()=>{
+ const g=start();
+ for(const p of [...data.deductions,...data.contradictions]){
+  for(let i=1;i<=3;i++)assert.equal(g.hint(p.id).length,i,p.id);
+  assert.equal(g.hint(p.id).length,3,p.id);
+ }
+ const r=new Engine(data,g.snapshot());
+ assert.deepEqual(r.state.hints,g.state.hints);
+ assert.equal(r.state.deductions.length,0);assert.equal(r.state.contradictions.length,0);
+});
