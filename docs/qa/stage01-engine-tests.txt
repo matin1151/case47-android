@@ -1,0 +1,57 @@
+
+> case47-last-call@0.5.4 test
+> node --test tests/engine.test.cjs tests/room-six.test.cjs
+
+✔ Complete discovery → interviews → contradictions → deductions → timeline → correct ending (12.737881ms)
+✔ Next lead names a reachable action and updates after discoveries (4.766603ms)
+✔ Wrong proof cannot advance; no evidence or progression is lost (11.939535ms)
+✔ Competing hypotheses require a defensible choice and proof, with safe retry (4.739906ms)
+✔ Relevant extra evidence supports the camera hypothesis; unrelated evidence explains rejection (6.409987ms)
+✔ Direct access to footage and staged clock question follow discoveries (8.988488ms)
+✔ The other lies cannot be judged before both accounts are confronted (4.682536ms)
+✔ Older saves open without hypothesis or report feedback state (7.813874ms)
+✔ Wrong accusation is retryable and keeps the whole investigation (3.900249ms)
+✔ Report review points to the first weak argument without revealing the answer (13.856483ms)
+✔ Final report accepts other defensible evidence from each proof group (3.602125ms)
+✔ Wrong timeline highlights mistakes, then can be corrected (2.507ms)
+✔ Locked content and premature final report reject access (0.895645ms)
+✔ Hints are optional and capped; viewing one cannot solve a puzzle (0.464849ms)
+✔ Save serialization survives reload, export and import (6.014089ms)
+✔ Corrupt primary recovers backup and emits a warning (0.933651ms)
+✔ Unavailable storage does not crash gameplay; warning is exposed (0.854007ms)
+✔ Malformed imports and unknown case versions reject cleanly (0.348483ms)
+✔ Every free action can be exhausted in randomized order without a dead end (124.024037ms)
+✔ Free case opens; future paid cases cannot unlock without verified ownership (0.249194ms)
+✔ Audio settings and hints persist across reload (3.673662ms)
+✔ Chronology and exclusive office access support one culprit without a timing contradiction (0.593789ms)
+✔ interview guidance separates the instruction from the direct question (7.608224ms)
+✔ first-clue comparison earns an actual second record once (2.452792ms)
+✔ trusting an unverified statement adds a recoverable source check (6.025393ms)
+✔ every recommended step is reachable through both opening branches (13.581431ms)
+✔ contradiction hints have three usable levels, survive restore, and do not solve for the player (1.723453ms)
+✔ direct contradictory records suffice, but unrelated records and incomplete final reports do not (7.769067ms)
+✔ old saves resume without a new opening and rewards cannot be farmed (7.489557ms)
+✔ case validates and cannot collect before starting (2.33304ms)
+✔ hidden room and tank remain locked until their independent prerequisites (3.943579ms)
+✔ measurement requires a correct value and discovered proof (3.149231ms)
+✔ wrong synchronization and fragment rotation do not complete deductions (0.79923ms)
+✔ complete playthrough unlocks all scenes without confession dependency (6.731707ms)
+✔ correct names without proof never complete report (5.96236ms)
+✔ two reports have independent outcomes and can remain open (7.207372ms)
+✔ assigning both events to one suspect fails despite full evidence (4.708056ms)
+✔ unrelated or undiscovered evidence cannot support report (10.138815ms)
+✔ unrelated evidence cannot challenge an alibi (5.89502ms)
+✔ adding the second required proof completes the two-document comparison (2.093499ms)
+✔ a supporting live call can accompany the two primary clock records (1.614322ms)
+✔ all pre-unlock clues remain independently reachable (0.695653ms)
+✔ each evidence exhibit has a different representation and never opens a zoom control (9.418092ms)
+✔ incorrect timeline is rejected and corrected chronology succeeds (9.418188ms)
+✔ progress roundtrips through SaveStore and stays independent of case47 (9.518084ms)
+ℹ tests 45
+ℹ suites 0
+ℹ pass 45
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 484.213657

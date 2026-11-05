@@ -1,0 +1,6 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> case47-last-call@0.5.4 test:ui
+> node tests/ui.test.cjs
+
+PASS: mobile UI complete playthrough, incorrect/retried report, hints, reload, export/import, offline play, standalone HTML served locally (file:// blocked by environment policy), five viewport widths; no JS errors or external requests.

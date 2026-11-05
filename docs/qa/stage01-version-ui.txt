@@ -1,0 +1,1 @@
+PASS 2026-11-05: versioned HTML opens; settings displays ۰.۵.۴; CASE_CATALOG.buildVersion = 0.5.4
