@@ -5,7 +5,7 @@ const {Engine,SaveStore}=require('../web/engine.js');require('../web/room-six-en
 const data=JSON.parse(fs.readFileSync(require('node:path').join(__dirname,'../web/cases/room-six.json'),'utf8'));
 function start(){const g=new Engine(data);g.start();return g;}
 function collectOpen(g){for(const s of data.scenes)if(g.meets(s.requires))for(const h of s.hotspots)g.collect(h.evidence);}
-function play(){const g=start();collectOpen(g);for(const id of ['space','entrance','belonging','raw','refer','show','sync','paper','opportunity','past']){collectOpen(g);const p=data.deductions.find(x=>x.id===id);assert.equal(g.deduce(id,p.proof,p.interaction&&p.interaction.answer).ok,true,id);}for(const c of data.characters)for(const q of c.questions)if(g.meets(q.requires))g.ask(c.id,q.id);const act=data.deductions.find(p=>p.id==='fatal-act');assert.equal(g.deduce(act.id,act.proof).ok,true);for(const c of data.contradictions)assert.equal(g.confront(c.id,c.proof).ok,true);data.timeline.slots.forEach((s,i)=>g.setTimeline(i,s.event));assert.equal(g.solveTimeline().ok,true);return g;}
+function play(){const g=start();collectOpen(g);for(let round=0;round<12;round++){collectOpen(g);for(const c of data.characters)for(const q of c.questions)if(g.meets(q.requires))g.ask(c.id,q.id);for(const c of data.contradictions)if(g.meets(c.requires)&&c.proof.every(id=>g.state.evidence.includes(id)))g.confront(c.id,c.proof);for(const p of data.deductions)if(g.meets(p.requires)&&p.proof.every(id=>g.state.evidence.includes(id)))g.deduce(p.id,p.proof,p.interaction&&p.interaction.answer);}data.timeline.slots.forEach((s,i)=>g.setTimeline(i,s.event));assert(g.solveTimeline().ok);return g;}
 function answer(){return {sections:Object.fromEntries(data.report.sections.map(s=>[s.id,{suspect:s.answer,proof:[...s.proof]}]))};}
 test('interview guidance separates the instruction from the direct question',()=>{const g=start();collectOpen(g);for(const c of data.characters)for(const q of c.questions)if(q.id!=='s_exit'&&g.meets(q.requires))g.ask(c.id,q.id);assert.equal(g.nextLead().text,'از سامان بپرس\nخروج رها را دیدی؟');assert.equal(g.nextLead().id,'saman');});
 test('first-clue comparison earns an actual second record once',()=>{const g=start();assert.equal(g.chooseOpening('compare').fast,true);assert.deepEqual(g.state.evidence,['E01','E02']);assert.equal(g.chooseOpening('compare').ok,false);assert.deepEqual(g.state.evidence,['E01','E02']);});
@@ -52,4 +52,54 @@ test('R026-R032 recording and independent account are readable without duplicate
   const e=data.evidence.find(e=>e.id===id),html=global.RoomSixVisuals.evidence(e);
   assert(html.includes(e.body));
  }
+});
+
+test('each extra historic document is assessed independently and relevant context is accepted',()=>{
+ const g=play();
+ for(const section of data.report.sections)for(const e of data.evidence){
+  if(section.proof.includes(e.id))continue;
+  const a=answer();a.sections[section.id].proof.push(e.id);
+  const result=g.report(a).outcomes.find(o=>o.id===section.id);
+  assert.equal(result.ok,(section.related||[]).includes(e.id),section.id+' '+e.id);
+  if(!result.ok)assert(result.message.includes(e.title),result.message);
+ }
+});
+test('report has distinct complete, partial, open and wrong outcomes and retains choices',()=>{
+ const g=play(),a=answer();g.report(a);assert.equal(g.state.reportKind,'complete');
+ a.sections.past={suspect:'open',proof:[]};g.report(a);assert.equal(g.state.reportKind,'partial');
+ assert.equal(g.state.reportOutcomes.find(x=>x.id==='present').ok,true);
+ g.retry();const restored=new Engine(data,g.snapshot());assert.deepEqual(restored.state.reportDraft,a);
+ a.sections.present={suspect:'open',proof:[]};g.report(a);assert.equal(g.state.reportKind,'open');
+ a.sections.present={suspect:'behzad',proof:[]};g.report(a);assert.equal(g.state.reportKind,'wrong');
+ g.retry();assert.equal(g.report(answer()).ok,true);
+});
+test('all deductions check empty, incomplete, correct, related and unrelated evidence',()=>{
+ const g=play();
+ for(const p of data.deductions){
+  const value=p.interaction&&p.interaction.answer;
+  assert.equal(g.deduce(p.id,[],value).ok,false,p.id);
+  assert.equal(g.deduce(p.id,p.proof.slice(1),value).ok,false,p.id);
+  assert.equal(g.deduce(p.id,p.proof,value).ok,true,p.id);
+  for(const id of p.related||[])assert.equal(g.deduce(p.id,[...p.proof,id],value).ok,true,p.id+' '+id);
+  const unrelated=data.evidence.find(e=>!p.proof.includes(e.id)&&!(p.related||[]).includes(e.id));
+  if(unrelated)assert.equal(g.deduce(p.id,[...p.proof,unrelated.id],value).ok,false,p.id);
+ }
+});
+test('numeric inputs and equivalent paper rotations are consistent',()=>{
+ const g=play();
+ for(const input of ['1.80','۱٫۸۰','١٫٨٠',' 1,80 '])assert(g.deduce('space',data.deductions.find(p=>p.id==='space').proof,input).ok);
+ for(const input of ['',1.65,0])assert.equal(g.deduce('space',data.deductions.find(p=>p.id==='space').proof,input).ok,false);
+ for(const angle of [0,90,270,360])assert.equal(g.deduce('paper',data.deductions.find(p=>p.id==='paper').proof,angle).ok,false);
+ for(const angle of [180,540,-180,'۱۸۰'])assert(g.deduce('paper',data.deductions.find(p=>p.id==='paper').proof,angle).ok);
+});
+test('timeline rejects blanks, duplicate events and a swapped pair while preserving draft',()=>{
+ const g=play();g.setTimeline(0,'');assert.equal(g.solveTimeline().ok,false);assert.equal(g.state.timelineDraft[0],'');
+ g.setTimeline(0,data.timeline.slots[1].event);assert.equal(g.solveTimeline().ok,false);
+ g.setTimeline(1,data.timeline.slots[0].event);assert.equal(g.solveTimeline().ok,false);
+ data.timeline.slots.forEach((s,i)=>g.setTimeline(i,s.event));assert(g.solveTimeline().ok);
+});
+test('old saves preserve discoveries and explicitly require revised historic checks',()=>{
+ const g=play(),s=g.snapshot();delete s.revision;s.ending='success';
+ const r=new Engine(data,s);assert.deepEqual(r.state.evidence,s.evidence);assert.equal(r.state.ending,null);
+ assert(r.state.reportFeedback.includes('به‌روز'));assert(!r.state.deductions.includes('past'));
 });
