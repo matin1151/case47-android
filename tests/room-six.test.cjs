@@ -32,3 +32,24 @@ test('incorrect timeline is rejected and corrected chronology succeeds',()=>{con
 test('progress roundtrips through SaveStore and stays independent of case47',()=>{const g=play(),memory=new Map(),store=new SaveStore({getItem:k=>memory.get(k)||null,setItem:(k,v)=>memory.set(k,v)},'room-six.save.v1');store.save(g.snapshot());const restored=new Engine(data,store.load());assert.equal(restored.report(answer()).ok,true);const old=JSON.parse(fs.readFileSync(require('node:path').join(__dirname,'../web/cases/case47.json'),'utf8'));assert.throws(()=>new Engine(old,store.load()));assert.equal(new Engine(old).state.started,false);});
 
 test('later report cannot be collected on the first night; opportunity does not establish the fatal act',()=>{const g=start();collectOpen(g);assert.throws(()=>g.collect('E23'));const p=data.deductions.find(x=>x.id==='sync');assert(g.deduce('sync',p.proof,2).ok);g.collect('E23');g.collect('E24');assert.throws(()=>g.deduce('fatal-act',['E14','E15','E16','E20']));const full=play(),act=data.deductions.find(x=>x.id==='fatal-act');full.state.deductions=full.state.deductions.filter(id=>id!=='fatal-act');assert.equal(full.deduce(act.id,act.proof.filter(id=>id!=='E24')).ok,false);assert.equal(new Engine(data,full.snapshot()).deduce(act.id,act.proof).ok,true);});
+
+test('R026-R032 historic reconstruction requires the post-recording account and supports save restore',()=>{
+ const g=start();collectOpen(g);
+ const raw=data.deductions.find(p=>p.id==='raw');
+ assert.equal(g.deduce('raw',['E07']).ok,false);
+ assert.equal(g.deduce('raw',raw.proof).ok,true);
+ const restored=new Engine(data,g.snapshot());
+ assert(restored.state.evidence.includes('E26'));
+ assert(restored.state.deductions.includes('raw'));
+ const full=play(),a=answer();
+ a.sections.past.proof=a.sections.past.proof.filter(id=>id!=='E26');
+ assert.equal(full.report(a).outcomes.find(x=>x.id==='past').ok,false);
+ assert.equal(full.report(answer()).ok,true);
+});
+test('R026-R032 recording and independent account are readable without duplicate exhibits',()=>{
+ require('../web/room-six-visuals.js');
+ for(const id of ['E07','E26']){
+  const e=data.evidence.find(e=>e.id===id),html=global.RoomSixVisuals.evidence(e);
+  assert(html.includes(e.body));
+ }
+});

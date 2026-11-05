@@ -25,7 +25,7 @@ function evidence(e){
  case 'E04':v=sheet('رسید تعمیرات · آذر ۱۳۹۸','<p>درخواست‌کننده: بهزاد</p><p>اجرای پوشش یکپارچه مقابل ورودی بایگانی</p><p>عنوان ثبت‌شده: تعمیر رطوبت</p><span class="r6-stamp">رونوشت آرشیو تعمیرات</span>');break;
  case 'E05':v=photo('closeups',3,'نمای نزدیک آویز برگ در شکاف خشک کف کنار قفسه');break;
  case 'E06':v='<div class="r6-raha-souvenir" role="img" aria-label="عکس یادگاری قدیمی رها با لبخند کنار پنجره نشیمن ویلا؛ جنگل و مبل در پس‌زمینه و آویز برگ روی سینه دیده می‌شوند"></div>';break;
- case 'E07':v=sheet('رونوشت نسخه خام','<p>رها: این دو صورت‌حساب یک هزینه‌اند؛ گزارش می‌کنم.</p><p>بهزاد: این مدارک از اینجا بیرون نمی‌رود.</p><p>نیما: باید کمک بخواهیم.</p><p>بهزاد: اول مدارک.</p><small>مسیر نسخه آفلاین در دفتر فهرست فایل‌های نیما ثبت شده است.</small>');break;
+ case 'E07':v=sheet('رونوشت نسخه خام','<p>'+esc(e.body)+'</p>');break;
  case 'E08':v=sheet('تطبیق صورت‌حساب‌ها','<table><thead><tr><th>ثبت</th><th>مشاهده</th></tr></thead><tbody><tr><td>دو پرداخت</td><td>یک خدمت مشترک</td></tr><tr><td>امضاها</td><td>ناسازگار</td></tr><tr><td>نسخه مستقل</td><td>هم‌خوان با یادداشت رها</td></tr></tbody></table><p>مدیر اجرایی: بهزاد · مسئول اسناد: نیما</p>');break;
  case 'E09':v=sheet('پرونده مشاوره','<p>پرداخت‌کننده: بهزاد ← دریافت‌کننده: نیما</p><p>عنوان: مشاوره · پرداخت دوره‌ای</p><blockquote>نسخه صدا می‌ماند، تا وقتی توافقمان بماند.</blockquote><small>رونوشت پیام نیما به بهزاد، در دوره پرداخت‌ها</small>');break;
  case 'E10':v='<svg class="r6-site-plan" viewBox="0 0 400 360" role="img" aria-label="مخزن متروک شش متر شمال ویلا، جدا از مخزن فعال"><rect x="20" y="20" width="360" height="320" rx="15" fill="#e5dcc1"/><g fill="#374d3d" stroke="#687c5f" stroke-width="3"><circle cx="60" cy="65" r="20"/><circle cx="335" cy="90" r="23"/><rect x="140" y="38" width="120" height="40"/><rect x="80" y="175" width="240" height="125"/><rect x="15" y="225" width="50" height="50"/></g><g fill="#283a30" font-size="15" text-anchor="middle"><text x="200" y="28">شمال ↑</text><text x="200" y="105">مخزن متروک</text><text x="245" y="145">۶ متر</text><text x="200" y="325">بنای ویلا</text><text x="55" y="210">مخزن فعال</text></g><path d="M200 80v90" stroke="#8b5944" stroke-width="2" stroke-dasharray="5 4"/></svg><p class="r6-document-note">پیوست جست‌وجوی ۱۳۹۸: مخزن متروک تخلیه نشده است.</p>';break;
@@ -36,7 +36,7 @@ function evidence(e){
  case 'E16':v='<div class="r6-phone-table"><div class="r6-phone r6-call-log"><p>تلفن بهزاد · سابقه تماس</p><h3>نیما</h3><p dir="ltr">۲۳:۴۷</p><p>تماس پاسخ‌داده‌شده</p><blockquote>پاسخ زنده نیما در صدای فیلم هم شنیده می‌شود.</blockquote></div></div>';break;
  case 'E17':v=sheet('رونوشت پیام ۲۳:۴۲','<p>'+esc(e.body)+'</p>');break;
  case 'E18':case 'E19':v=fragments(e.id,false);break;
- case 'E20':case 'E23':case 'E24':case 'E25':v=sheet(e.title,'<p>'+esc(e.body)+'</p>');break;
+ case 'E20':case 'E23':case 'E24':case 'E25':case 'E26':v=sheet(e.title,'<p>'+esc(e.body)+'</p>');break;
  case 'E21':v=sheet('دفتر اظهارات اولیه','<p>بهزاد: پشت اتاق کار فضایی نیست.</p><p>مینا: تمام مدت کنار سامان بودم.</p><p>لیلا: صدا از خانه بود.</p><p>سامان: خودرو را دیدم؛ سرنشین را نه.</p>');break;
  case 'E22':v=sheet('ثبت بازدید ورودی بایگانی','<p>محل بازدید: پوشش کمد اتاق کار و ضلع شرقی بنا</p><p>پوشش کمد و در خدماتی شرقی به همان فضای باریک می‌رسند.</p><p>فضای مفید: حدود ۱٫۶۵ × ۴ متر</p><p>در خدماتی به کتابخانه وصل نیست.</p>');break;
  default:throw Error('نمای مدرک تعریف نشده: '+e.id);
