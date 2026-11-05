@@ -1,0 +1,30 @@
+{
+  "requirement": "R001",
+  "checked_at": "2026-11-05",
+  "base_commit": "04e4f8e56ee68a3138319f392573812d6b5d649d",
+  "commit_date": "2026-11-04T20:24:23+03:30",
+  "selected": "current",
+  "reason": "Current delivered HTML includes police/detective introduction and matches current remote source. Same-named playtest copy predates this narrative change.",
+  "candidates": [
+    {
+      "kind": "current",
+      "library_file_id": "libfile_bc3bf4879384819185901004edf98cfb",
+      "library_version": 4,
+      "filename": "Kavian-Room-Six-0.4.0.html",
+      "size": 34545591,
+      "sha256": "354e80ae7ef0bf88c9326d7a585f923f98b077e5e58cf801dc94a798be56ee9a",
+      "case_version": "0.4.0-playtest",
+      "intro": "در یک ویلای جنگلی، سامان آسیب دیده و نیما جان باخته است. گزارش این دو رخداد، پلیس را به ویلا کشانده؛ مرگ نیما به‌عنوان قتل بررسی می‌شود. فرهاد کاویان برای بررسی صحنه، شنیدن روایت حاضران و روشن‌کردن ارتباط این دو رخداد وارد پرونده شده است. پنج نفر آن شب در ویلا بوده‌اند. لیلا، مالک ویلا، آن‌ها را دعوت کرده بود تا پیش از فروش، وسایل به‌جامانده و مدارک قدیمی‌شان را جمع کنند. این جمع هفت سال پیش هم هنگام ناپدیدشدن رها در همین ویلا حضور داشت؛ لیلا امیدوار بود این دیدار سرنوشت رها را هم روشن کند."
+    },
+    {
+      "kind": "playtest-copy",
+      "library_file_id": "libfile_4912b41f8c408191adc26b5e94560945",
+      "library_version": 0,
+      "filename": "Kavian-Room-Six-0.4.0.html",
+      "size": 34544483,
+      "sha256": "6ade2a0dbc2c2c1643680129cad6bf256ab63f784347155b4264b1992472f0d4",
+      "case_version": "0.4.0-playtest",
+      "intro": "هفت سال پس از ناپدیدشدن رها، لیلا قصد فروش ویلا را دارد. او چهار نفر دیگرِ جمع قدیمی را دعوت کرده تا وسایل به‌جامانده و مدارک قدیمی را پیش از فروش جمع کنند؛ خودش هم امیدوار است سرنوشت رها روشن شود. همان شب سامان آسیب می‌بیند و نیما به قتل می‌رسد. کاویان برای بررسی این دو رخداد وارد ویلا می‌شود."
+    }
+  ]
+}
