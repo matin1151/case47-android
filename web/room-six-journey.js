@@ -27,7 +27,7 @@ P.verifyOpening=function(answer){this.ensureStarted();if(!isR6(this)||this.state
 P.investigationPhase=function(){if(!isR6(this))return 0;if(this.state.ending==='success')return 4;
  if(core.some(id=>!this.state.evidence.includes(id)))return 0;
  if(basic.some(id=>!this.state.questions.includes(id)))return 1;
- if(this.data.contradictions.some(x=>!this.state.contradictions.includes(x.id))||['space','entrance','belonging','raw','refer','show','paper','past'].some(id=>!this.state.deductions.includes(id)))return 2;
+ if(this.data.report.sections.some(s=>(s.requires.contradictions||[]).some(id=>!this.state.contradictions.includes(id)))||['space','entrance','belonging','raw','refer','show','paper','past'].some(id=>!this.state.deductions.includes(id)))return 2;
  if(!this.state.timeline||!this.state.deductions.includes('fatal-act'))return 3;
  return 4;
 };

@@ -64,7 +64,7 @@ Base.prototype.restore=function(s){
  n.reportOutcomes=s&&Array.isArray(s.reportOutcomes)?s.reportOutcomes: [];
  n.puzzleDrafts={};for(const [id,values] of Object.entries(s&&s.puzzleDrafts||{})){if([...this.ids.deductions,...this.ids.contradictions].includes(id)&&Array.isArray(values))n.puzzleDrafts[id]=values.filter(v=>n.evidence.includes(v));}n.revision='r155-0.5.5';
  if(s&&s.revision!==n.revision&&(s.deductions.length||s.ending)){
-  n.ending=null;n.reportFeedback='نسخه پرونده به‌روز شده است. مدارک و پاسخ‌های تو حفظ شدند؛ بررسی‌های تازه و گزارش نهایی را دوباره ثبت کن.';
+  n.ending=null;n.migrationNotice='نسخه پرونده به‌روز شد؛ پیشرفتت محفوظ است. چند بررسی تازه و گزارش نهایی نیاز به ثبت دوباره دارند.';n.reportFeedback='نسخه پرونده به‌روز شده است. مدارک و پاسخ‌های تو حفظ شدند؛ بررسی‌های تازه و گزارش نهایی را دوباره ثبت کن.';
   n.deductions=n.deductions.filter(id=>!['raw','refer','past'].includes(id));
  }
  return n;

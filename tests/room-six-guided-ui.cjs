@@ -9,15 +9,15 @@ await p.locator('[data-action="r6-opening"][data-choice="'+choice+'"]').click();
 if(choice==='trust')await p.locator('[data-action="r6-check-opening"][data-answer="sale"]').click();
 for(let n=0;n<160;n++){
  if(await p.locator('#r6-report-form').count())break;
- await p.locator('[data-action="r6-next"]').first().click();
+ await p.locator('[data-action="r6-next"]').first().click();if(await p.locator('#r6-report-form').count())break;
  if(await p.locator('#dialog[open]').count()){
   if(await p.locator('[data-action="solve"]').count()){
-   log.push(await p.locator('#dialog-title').innerText());
+   log.push(await p.locator('#dialog-title').innerText());console.log(choice+' / '+log.at(-1));
    for(let h=0;h<3;h++)await p.locator('[data-action="hint"]').click();
    await p.locator('[data-action="r6-place-proof"]').click();
    const input=p.locator('#r6-input');
    if(await input.count()){const label=await input.getAttribute('aria-label'),guide=await p.locator('#hint-text').innerText();
-    const value=label.includes('درجه')?'۱۸۰':label.includes('متر')?'۱٫۸':'۲';
+    if(label.includes('درجه')){await input.fill('۹۰');await p.screenshot({path:path.resolve(__dirname,'../paper-90.png')});await input.fill('۱۸۰');await p.screenshot({path:path.resolve(__dirname,'../paper-180.png')});}const value=label.includes('درجه')?'۱۸۰':label.includes('متر')?'۱٫۸':'۲';
     assert(guide.includes(value)||guide.includes(value.replace('٫','٫'))||guide.includes('۱۸۰'));
     await input.fill(value);
    }
