@@ -23,6 +23,16 @@ const path=require('node:path');
   await action('select-case','room-six').click();await action('start').click();await action('begin').click();
   await action('r6-opening').and(page.locator('[data-choice='+choice+']')).click();await close();
   if(choice==='trust')await action('r6-check-opening').and(page.locator('[data-answer=sale]')).click();
+  if(choice==='trust'){
+   await navigate('board');await action('deduction','space').click();
+   await dialog.locator('#r6-input').fill('۱٫۸');
+   await action('solve').click();
+   const feedback=await dialog.locator('#puzzle-feedback').innerText();
+   assert.match(feedback,/«نقشه آگهی فروش ویلا» را هم انتخاب کن/);
+   assert.match(feedback,/«نقشه اصلی» هنوز ثبت نشده است.*«آرشیو اسناد ملک»/);
+   assert.match(feedback,/«اندازه‌های هم‌مبنا» هنوز ثبت نشده است.*«اتاق کار بهزاد»/);
+   await close();await navigate('scene');
+  }
   await collect('E21');
   const statements=await dialog.innerText();
   for(const name of ['بهزاد','مینا','لیلا','سامان'])assert.equal(statements.split(name+':').length-1,baseline?2:1);
@@ -52,7 +62,25 @@ const path=require('node:path');
    await action('r6-space-step').click();
   }
   assert.match(await dialog.innerText(),/بخش گمشده نقشه/);
-  for(const id of ['E01','E02','E03'])await dialog.locator('input[value='+id+']').check();
+  const records={E01:'نقشه آگهی فروش ویلا',E02:'نقشه اصلی',E03:'اندازه‌های هم‌مبنا'};
+  const proof=id=>dialog.locator('input[value='+id+']');
+  for(const id of Object.keys(records))await proof(id).check();
+  if(!baseline){
+   const input=dialog.locator('#r6-input'),feedback=dialog.locator('#puzzle-feedback');
+   await input.fill('۱٫۸');
+   for(const [id,title] of Object.entries(records)){
+    await proof(id).uncheck();await action('solve').click();
+    assert.equal(await feedback.innerText(),'دو مدرک اصلی روی میز است. «'+title+'» را هم انتخاب کن.');
+    await proof(id).check();
+   }
+   await proof('E01').uncheck();await proof('E02').uncheck();await action('solve').click();
+   assert.equal(await feedback.innerText(),'«'+records.E01+'» را هم انتخاب کن. «'+records.E02+'» را هم انتخاب کن.');
+   assert(await proof('E03').isChecked());assert.equal(await input.inputValue(),'۱٫۸');
+   await proof('E01').check();await proof('E02').check();
+   await input.fill('۲');await action('solve').click();
+   assert.match(await feedback.innerText(),/مقدار واردشده/);
+   assert.doesNotMatch(await feedback.innerText(),/انتخاب کن|ثبت نشده/);
+  }
   await page.locator('#r6-input').fill('۱٫۸');await action('solve').click();
   assert.match(await dialog.innerText(),/۱٫۸۰ متر.*۱٫۶۵ متر/s);
   if(baseline){

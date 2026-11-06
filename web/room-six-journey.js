@@ -61,7 +61,17 @@ P.nextLead=function(){
  return old.nextLead.call(this);
 };
 P.hint=function(id){if(!isR6(this))return old.hint.call(this,id);this.ensureStarted();const p=[...this.data.deductions,...this.data.contradictions].find(x=>x.id===id);if(!p)throw Error('راهنمای این بررسی پیدا نشد.');const n=Math.min((this.state.hints[id]||0)+1,p.hints.length);this.state.hints[id]=n;this.changed();return p.hints.slice(0,n);};
-function check(g,p,proof){g.ensureStarted();if(!p||!g.meets(p.requires))throw Error('ابتدا پیش‌نیاز همین بررسی را کامل کن.');if(!Array.isArray(proof)||proof.some(id=>!g.state.evidence.includes(id)))throw Error('مدرک انتخابی هنوز کشف نشده است.');const missing=p.proof.filter(id=>!proof.includes(id));if(missing.length)return {ok:false,message:'هنوز '+missing.length.toLocaleString('fa-IR')+' مدرک اصلی برای همین پرسش کم است. '+(p.checklist||[]).join('؛ ')+' را بررسی کن. راهنمای مرحله‌ای، محل و روش مقایسه را نشان می‌دهد.'};const extra=[...new Set(proof)].filter(id=>!p.proof.includes(id)&&!(p.related||[]).includes(id));if(extra.length)return {ok:false,message:'«'+extra.map(id=>g.data.evidence.find(e=>e.id===id).title).join('»، «')+'» به همین پرسش پاسخ مستقیم نمی‌دهد. فعلاً آن را از روی میز بردار؛ در دفتر مدارک حفظ می‌شود.'};return null;}
+function missingMapProof(g,missing){
+ const actions=missing.map(id=>{
+  const title='«'+g.data.evidence.find(e=>e.id===id).title+'»';
+  if(g.state.evidence.includes(id))return title+' را هم انتخاب کن.';
+  // The puzzle prompt introduces the scenes for all three required records.
+  const scene=g.data.scenes.find(s=>s.hotspots.some(h=>h.evidence===id));
+  return title+' هنوز ثبت نشده است.'+(scene&&g.meets(scene.requires)?' آن را در «'+scene.name+'» بررسی کن.':'');
+ });
+ return (missing.length===1?'دو مدرک اصلی روی میز است. ':'')+actions.join(' ');
+}
+function check(g,p,proof){g.ensureStarted();if(!p||!g.meets(p.requires))throw Error('ابتدا پیش‌نیاز همین بررسی را کامل کن.');if(!Array.isArray(proof)||proof.some(id=>!g.state.evidence.includes(id)))throw Error('مدرک انتخابی هنوز کشف نشده است.');const missing=p.proof.filter(id=>!proof.includes(id));if(missing.length)return {ok:false,message:p.id==='space'?missingMapProof(g,missing):'هنوز '+missing.length.toLocaleString('fa-IR')+' مدرک اصلی برای همین پرسش کم است. '+(p.checklist||[]).join('؛ ')+' را بررسی کن. راهنمای مرحله‌ای، محل و روش مقایسه را نشان می‌دهد.'};const extra=[...new Set(proof)].filter(id=>!p.proof.includes(id)&&!(p.related||[]).includes(id));if(extra.length)return {ok:false,message:'«'+extra.map(id=>g.data.evidence.find(e=>e.id===id).title).join('»، «')+'» به همین پرسش پاسخ مستقیم نمی‌دهد. فعلاً آن را از روی میز بردار؛ در دفتر مدارک حفظ می‌شود.'};return null;}
 P.confront=function(id,proof){if(!isR6(this))return old.confront.call(this,id,proof);const p=this.data.contradictions.find(x=>x.id===id),bad=check(this,p,proof);return bad||old.confront.call(this,id,proof);};
 P.deduce=function(id,proof,input){if(!isR6(this))return old.deduce.call(this,id,proof,input);const p=this.data.deductions.find(x=>x.id===id),bad=check(this,p,proof);return bad||old.deduce.call(this,id,proof,input);};
 P.journeyReward=function(key,message){if(!isR6(this)||this.state.journey.rewards.includes(key))return '';this.state.journey.rewards.push(key);this.changed();return message;};
