@@ -37,7 +37,7 @@ function evidence(e){
  case 'E17':v=sheet('رونوشت پیام ۲۳:۴۲','<p>'+esc(e.body)+'</p>');break;
  case 'E18':case 'E19':v=fragments(e.id,false);break;
  case 'E20':case 'E23':case 'E24':case 'E25':case 'E26':case 'E27':case 'E28':case 'E29':case 'E30':v=sheet(e.title,'<p>'+esc(e.body)+'</p>');break;
- case 'E21':v=sheet(e.title,'<p>'+esc(e.body)+'</p>');break;
+ case 'E21':v=sheet(e.title,e.body.split('\n').map(line=>'<p>'+esc(line)+'</p>').join(''));break;
  case 'E22':v=sheet('ثبت بازدید ورودی بایگانی','<p>محل بازدید: پوشش کمد اتاق کار و ضلع شرقی بنا</p><p>پوشش کمد و در خدماتی شرقی به همان فضای باریک می‌رسند.</p><p>فضای مفید: حدود ۱٫۶۵ × ۴ متر</p><p>در خدماتی به کتابخانه وصل نیست.</p>');break;
  default:throw Error('نمای مدرک تعریف نشده: '+e.id);
  }

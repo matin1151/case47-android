@@ -31,9 +31,24 @@ P.investigationPhase=function(){if(!isR6(this))return 0;if(this.state.ending==='
  if(!this.state.timeline||!this.state.deductions.includes('fatal-act'))return 3;
  return 4;
 };
+P.entryVisitStep=function(){
+ const entry=this.data.scenes.find(s=>s.id==='r6-entry');
+ return {view:'scene',id:entry.id,kind:'collect',target:'E22',label:'رفتن به '+entry.name,text:'در «'+entry.name+'»، مدرک «بازدید ورودی بایگانی» را ثبت کن.'};
+};
+P.spaceClaimStep=function(){
+ if(this.state.deductions.includes('space'))return this.state.evidence.includes('E22')?null:this.entryVisitStep();
+ const missing=this.data.deductions.find(p=>p.id==='space').proof.find(id=>!this.state.evidence.includes(id));
+ if(missing){
+  const scene=this.data.scenes.find(s=>s.hotspots.some(h=>h.evidence===missing));
+  const title=this.data.evidence.find(e=>e.id===missing).title;
+  return {view:'scene',id:scene.id,kind:'collect',autoOpen:true,target:missing,label:'بررسی '+title,text:'برای حل «بخش گمشده نقشه»، ابتدا «'+title+'» را از '+scene.name+' ثبت کن.'};
+ }
+ return {view:'board',kind:'deduce',target:'space',label:'رفتن به بخش گمشده نقشه',text:'برای باز شدن محل بازدید، ابتدا معمای «بخش گمشده نقشه» را در استنتاج حل کن.'};
+};
 P.nextLead=function(){
  if(!isR6(this)||this.state.ending)return old.nextLead.call(this);
- const evidence=id=>{const scene=this.data.scenes.find(s=>s.hotspots.some(h=>h.evidence===id)),e=this.data.evidence.find(e=>e.id===id);return scene&&this.meets(scene.requires)?{view:'scene',id:scene.id,kind:'collect',target:id,label:'بررسی '+e.title,text:'در '+scene.name+'\n«'+e.title+'» را بررسی کن.'}:null;};
+ if(this.state.deductions.includes('space')&&!this.state.evidence.includes('E22'))return this.entryVisitStep();
+ const evidence=id=>{const scene=this.data.scenes.find(s=>s.hotspots.some(h=>h.evidence===id)),e=this.data.evidence.find(e=>e.id===id);return scene&&this.meets(scene.requires)?{view:'scene',id:scene.id,kind:'collect',autoOpen:id==='E03',target:id,label:'بررسی '+e.title,text:'در '+scene.name+'\n«'+e.title+'» را بررسی کن.'}:null;};
  for(const id of core)if(!this.state.evidence.includes(id)){const lead=evidence(id);if(lead)return lead;}
  for(const id of basic)if(!this.state.questions.includes(id)){const c=this.data.characters.find(c=>c.questions.some(q=>q.id===id)),q=c.questions.find(q=>q.id===id);if(this.meets(q.requires))return {view:'interview',id:c.id,kind:'ask',target:id,label:'گفت‌وگو با '+c.name,text:'از '+c.name+' بپرس\n'+q.label};}
  for(const id of ['l_false_sound','m_false_alibi','m_false_meet','b_false_space']){const c=this.data.contradictions.find(c=>c.id===id);if(this.state.contradictions.includes(id)||!this.meets(c.requires))continue;

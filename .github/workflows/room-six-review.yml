@@ -15,8 +15,10 @@ jobs:
           node-version: '24'
       - run: npm test
       - run: node tools/build_web.cjs
+      - id: version
+        run: echo "value=$(node -p 'require("./package.json").version')" >> "$GITHUB_OUTPUT"
       - uses: actions/upload-artifact@v4
         with:
-          name: Kavian-Room-Six-review-0.5.5
-          path: dist/Kavian-Room-Six-0.5.5.html
+          name: Kavian-Room-Six-review-${{ steps.version.outputs.value }}
+          path: dist/Kavian-Room-Six-${{ steps.version.outputs.value }}.html
           retention-days: 30
