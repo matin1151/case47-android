@@ -31,6 +31,7 @@ public final class MainActivity extends Activity {
  private WebView web;
  private LinearLayout status;
  private boolean failed;
+ private BazaarBilling billing;
  @Override public void onCreate(Bundle state) {
   super.onCreate(state);
   getWindow().setStatusBarColor(Color.rgb(13,20,21));
@@ -42,7 +43,7 @@ public final class MainActivity extends Activity {
     return insets.consumeSystemWindowInsets();
    }
   });
-  setContentView(root);createWeb();
+  setContentView(root);billing=new BazaarBilling(this);createWeb();
  }
  private void createWeb(){
   failed=false;web=new WebView(this);web.setBackgroundColor(Color.rgb(13,20,21));
@@ -50,6 +51,7 @@ public final class MainActivity extends Activity {
   s.setAllowFileAccess(false);s.setAllowContentAccess(false);s.setMixedContentMode(WebSettings.MIXED_CONTENT_NEVER_ALLOW);
   s.setMediaPlaybackRequiresUserGesture(true);s.setSupportZoom(false);s.setBuiltInZoomControls(false);
   s.setDefaultTextEncodingName("UTF-8");s.setCacheMode(WebSettings.LOAD_DEFAULT);
+  web.addJavascriptInterface(billing,"KavianBazaar");
   web.setWebChromeClient(new WebChromeClient());
   web.setWebViewClient(new WebViewClient(){
    @Override public WebResourceResponse shouldInterceptRequest(WebView view,WebResourceRequest request){return resource(request.getUrl());}
@@ -85,8 +87,10 @@ public final class MainActivity extends Activity {
   if(retry){Button button=new Button(this);button.setText("تلاش دوباره");button.setOnClickListener(new View.OnClickListener(){public void onClick(View v){if(web!=null){root.removeView(web);web.destroy();web=null;}createWeb();}});status.addView(button);}
   root.addView(status,new FrameLayout.LayoutParams(-1,-1));
  }
+ void billingReply(String json){if(web!=null)web.evaluateJavascript("window.dispatchEvent(new CustomEvent('kavian-billing',{detail:"+json+"}))",null);}
+ @Override protected void onActivityResult(int request,int result,android.content.Intent intent){if(!billing.onResult(request,result,intent))super.onActivityResult(request,result,intent);}
  @Override public void onBackPressed(){if(web==null){super.onBackPressed();return;}web.evaluateJavascript("typeof window.case47Back==='function' && window.case47Back()",new ValueCallback<String>(){public void onReceiveValue(String value){if(!"true".equals(value))MainActivity.this.finish();}});}
  @Override protected void onPause(){if(web!=null){web.evaluateJavascript("document.dispatchEvent(new Event('case47pause'))",null);web.onPause();}super.onPause();}
  @Override protected void onResume(){super.onResume();if(web!=null)web.onResume();}
- @Override protected void onDestroy(){if(web!=null){web.destroy();web=null;}super.onDestroy();}
+ @Override protected void onDestroy(){if(billing!=null)billing.close();if(web!=null){web.destroy();web=null;}super.onDestroy();}
 }

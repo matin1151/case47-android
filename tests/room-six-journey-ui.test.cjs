@@ -4,7 +4,7 @@ const {chromium}=require('playwright');
 (async()=>{const browser=await chromium.launch({headless:true,...(process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH}:{})});
 try{for(const width of [390,1280])for(const choice of ['compare','trust']){
  const p=await browser.newPage({viewport:{width,height:844}}),errors=[];p.on('pageerror',e=>errors.push(e.message));
- await p.goto(pathToFileURL(path.resolve(__dirname,'../dist/kavian-room-six-dev.html')).href);
+ await p.addInitScript(()=>{window.KavianBazaar={hasOwnership:()=>true};});await p.goto(pathToFileURL(path.resolve(__dirname,'../dist/kavian-room-six-dev.html')).href);
  await p.evaluate(()=>{const original=CaseAudio.prototype.buildForest,play=CaseAudio.prototype.pianoNote;CaseAudio.prototype.buildForest=function(){window.__forestAudio=this;return original.call(this);};CaseAudio.prototype.pianoNote=function(hz,t){(window.__notes||(window.__notes=[])).push({hz,t});return play.call(this,hz,t);};});
  await p.locator('[data-action="select-case"][data-id="room-six"]').click();await p.locator('[data-action="start"]').click();
  assert.match(await p.locator('#dialog').innerText(),/صدای جنگل/);await p.locator('[data-action="begin"]').click();

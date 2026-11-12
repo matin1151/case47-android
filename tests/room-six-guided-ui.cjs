@@ -3,13 +3,13 @@ const {chromium}=require('playwright'),path=require('node:path'),assert=require(
 (async()=>{const b=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_PATH});try{
 for(const choice of ['compare','trust']){
 const p=await b.newPage({viewport:{width:768,height:1024}}),log=[],errors=[];p.on('pageerror',e=>errors.push(e.message));
-await p.goto(pathToFileURL(path.resolve(__dirname,'../dist/kavian-room-six-dev.html')).href);
+await p.addInitScript(()=>{window.KavianBazaar={hasOwnership:()=>true};});await p.goto(pathToFileURL(path.resolve(__dirname,'../dist/kavian-room-six-dev.html')).href);
 await p.locator('[data-action="select-case"][data-id="room-six"]').click();await p.locator('[data-action="start"]').click();await p.locator('[data-action="begin"]').click();
 await p.locator('[data-action="r6-opening"][data-choice="'+choice+'"]').click();await p.locator('#dialog [data-action="close"]').first().click();
 if(choice==='trust')await p.locator('[data-action="r6-check-opening"][data-answer="sale"]').click();
 for(let n=0;n<160;n++){
  if(await p.locator('#r6-report-form').count())break;
- await p.locator('[data-action="r6-next"]').first().click();if(await p.locator('#r6-report-form').count())break;
+ await p.locator('.r6-optional-lead').evaluate(el=>el.open=true);await p.locator('[data-action="r6-next"]').first().click();if(await p.locator('#r6-report-form').count())break;
  if(await p.locator('#dialog[open]').count()){
   if(await p.locator('[data-action="solve"]').count()){
    log.push(await p.locator('#dialog-title').innerText());console.log(choice+' / '+log.at(-1));

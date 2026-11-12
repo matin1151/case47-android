@@ -40,8 +40,9 @@ Base.prototype.report=function(answer){
   if(a.suspect==='open'||!a.suspect)return {id:s.id,ok:false,message:s.label+': این بخش باز مانده است.'};
   if(!this.data.characters.some(c=>c.id===a.suspect))throw Error('مظنون نامعتبر است.');
   if(a.suspect!==s.answer)return {id:s.id,ok:false,message:s.label+': نسبت دادن مسئولیت با زنجیره شواهد سازگار نیست. زمان و نقش هر نفر را دوباره بسنج.'};
-  const missing=s.proof.filter(id=>!proof.includes(id)),extra=proof.filter(id=>!s.proof.includes(id)&&!(s.related||[]).includes(id));
-  if(missing.length)return {id:s.id,ok:false,message:s.label+': '+missing.length.toLocaleString('fa-IR')+' مدرک اصلی کم است. '+(s.checklist||[]).join('؛ ')};
+  const inherited=this.state.deductions.includes('paper')?['E18','E19']:[];
+  const missing=s.proof.filter(id=>!proof.includes(id)&&!inherited.includes(id)),extra=proof.filter(id=>!s.proof.includes(id)&&!(s.related||[]).includes(id));
+  if(missing.length)return {id:s.id,ok:false,message:s.label+': '+missing.length.toLocaleString('fa-IR')+' مدرک اصلی کم است: '+missing.map(id=>this.data.evidence.find(e=>e.id===id).title).join('، ')};
   if(extra.length)return {id:s.id,ok:false,message:s.label+': این مدارک به این رخداد مربوط نیستند: '+extra.map(id=>this.data.evidence.find(e=>e.id===id).title).join('، ')};
   if(!this.meets(s.requires))return {id:s.id,ok:false,message:s.label+': مدارک حاضرند، اما این بررسی‌ها ثبت نشده‌اند: '+this.missing(s.requires).join('، ')};
   return {id:s.id,ok:true,message:s.label+': زنجیره شواهد کامل است.'};

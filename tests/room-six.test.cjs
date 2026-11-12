@@ -35,6 +35,8 @@ test('later report cannot be collected on the first night; opportunity does not 
 
 test('R026-R032 historic reconstruction requires the post-recording account and supports save restore',()=>{
  const g=start();collectOpen(g);
+ assert(!g.state.evidence.includes('E26'));assert.throws(()=>g.collect('E26'));
+ for(const id of ['space','entrance']){const d=data.deductions.find(p=>p.id===id);assert(g.deduce(id,d.proof,d.interaction&&d.interaction.answer).ok);collectOpen(g);}
  const raw=data.deductions.find(p=>p.id==='raw');
  assert.equal(g.deduce('raw',['E07']).ok,false);
  assert.equal(g.deduce('raw',raw.proof).ok,true);

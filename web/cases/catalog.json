@@ -10,8 +10,8 @@
     {
       "id": "room-six",
       "file": "room-six.json",
-      "entitlement": "free",
-      "productId": null
+      "entitlement": "permanent",
+      "productId": "kavian_case2_room_six"
     }
   ]
 }

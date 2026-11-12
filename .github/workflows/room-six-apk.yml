@@ -1,4 +1,4 @@
-name: Room Six Android review
+name: Kavian 0.5.8 build and verification
 on: push
 permissions:
   contents: read
@@ -7,29 +7,29 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build and verify signed offline review APK
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm ci
+      - name: Logic and receipt checks
         run: |
-          export CASE47_ANDROID_TOOLS="$RUNNER_TEMP/kavian-sdk"
-          python tools/setup_android.py
-          sed -i 's/package="com.bidrano.kavian"/package="com.bidrano.kavian.review"/;s/versionName="0.5.3"/versionName="0.5.7"/;s/versionCode="8"/versionCode="12"/;s/android:name=".MainActivity"/android:name="com.bidrano.kavian.MainActivity"/;s/android:label="کاویان"/android:label="کاویان آزمایشی"/' src/android/AndroidManifest.xml
           npm test
+          node --test tests/playtest-058.test.cjs
+          mkdir -p .local/receipt-tests
+          javac -d .local/receipt-tests src/android/ReceiptSignature.java tests/ReceiptSignatureTest.java
+          java -cp .local/receipt-tests ReceiptSignatureTest
+      - name: Build both complete APK variants
+        run: |
+          python tools/setup_android.py
           python tools/build_android.py
-          mv dist/Case47-0.5.3-test.apk dist/Kavian-Room-Six-0.5.7-test.apk
-          chmod +x "$CASE47_ANDROID_TOOLS/build-tools/android-15/aapt"
-          "$CASE47_ANDROID_TOOLS/build-tools/android-15/aapt" dump badging dist/Kavian-Room-Six-0.5.7-test.apk
-          python - <<'PY'
-          import json, zipfile
-          from pathlib import Path
-          with zipfile.ZipFile('dist/Kavian-Room-Six-0.5.7-test.apk') as apk:
-              assert apk.testzip() is None
-              assert 'classes.dex' in apk.namelist()
-              for name in ('index.html', 'cases.bundle.js', 'room-six-journey.js', 'cases/room-six.json'):
-                  assert apk.read('assets/www/' + name) == (Path('web') / name).read_bytes()
-              assert b'"buildVersion": "0.5.7"' in apk.read('assets/www/cases.bundle.js')
-          PY
+          KAVIAN_REVIEW=1 python tools/build_android.py
       - uses: actions/upload-artifact@v4
         with:
-          name: Kavian-Room-Six-0.5.7-test
-          path: dist/Kavian-Room-Six-0.5.7-test.apk
+          name: Kavian-0.5.8-APKs
+          path: dist/*.apk
           if-no-files-found: error
           retention-days: 30
+      - name: Install browser for automated regression
+        run: npx playwright install --with-deps chromium
+      - name: Play both opening branches through the report
+        run: node tests/room-six-guided-ui.cjs
